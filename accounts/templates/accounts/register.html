@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="auth-navbar">
+        <div class="container nav-container">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">🐔</span>
+                <span>SmartPoultry</span>
+            </a>
+
+            <a href="/" class="back-home">
+                ← Back to Home
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- Registration Section -->
+    <main class="auth-section">
+
+        <div class="auth-container">
+
+            <!-- Left Content -->
+            <section class="auth-intro">
+
+                <span class="intro-badge">
+                    🐔 Smart Farm Management
+                </span>
+
+                <h1>
+                    Start Managing Your
+                    <span>Poultry Farm Smarter.</span>
+                </h1>
+
+                <p>
+                    Create your SmartPoultry account and manage farms,
+                    batches, daily records, egg production, expenses,
+                    and sales from one centralized platform.
+                </p>
+
+                <div class="intro-features">
+
+                    <div class="intro-feature">
+                        <span>✓</span>
+                        <p>Manage multiple farms</p>
+                    </div>
+
+                    <div class="intro-feature">
+                        <span>✓</span>
+                        <p>Track daily farm activities</p>
+                    </div>
+
+                    <div class="intro-feature">
+                        <span>✓</span>
+                        <p>Monitor production and sales</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Register Card -->
+            <section class="auth-card">
+
+                <div class="card-header">
+
+                    <span class="card-icon">👤</span>
+
+                    <h2>Create Your Account</h2>
+
+                    <p>
+                        Join SmartPoultry and start managing your farm.
+                    </p>
+
+                </div>
+
+
+                <form method="post" class="auth-form">
+
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.username.id_for_label }}">
+                            Username
+                        </label>
+
+                        {{ form.username }}
+
+                        {% if form.username.errors %}
+                            <div class="field-error">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.password1.id_for_label }}">
+                            Password
+                        </label>
+
+                        {{ form.password1 }}
+
+                        {% if form.password1.errors %}
+                            <div class="field-error">
+                                {{ form.password1.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.password2.id_for_label }}">
+                            Confirm Password
+                        </label>
+
+                        {{ form.password2 }}
+
+                        {% if form.password2.errors %}
+                            <div class="field-error">
+                                {{ form.password2.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <button type="submit" class="auth-button">
+                        Create Account
+                        <span>→</span>
+                    </button>
+
+                </form>
+
+
+                <div class="auth-footer">
+
+                    <p>
+                        Already have an account?
+                        <a href="/login/">Login here</a>
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="auth-footer-main">
+
+        <p>
+            © 2026 SmartPoultry. Modern Poultry Farm Management.
+        </p>
+
+    </footer>
+
+</body>
+</html>

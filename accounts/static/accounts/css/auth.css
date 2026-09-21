@@ -1,0 +1,462 @@
+/* =========================================
+   SmartPoultry Authentication Styles
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2f7d32;
+    --primary-dark: #256428;
+    --primary-light: #eaf6eb;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border: #dfe5e1;
+    --background: #f6faf7;
+    --white: #ffffff;
+    --danger: #dc2626;
+    --shadow: 0 15px 40px rgba(31, 41, 55, 0.08);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
+   Navbar
+   ========================================= */
+
+.auth-navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.container {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+}
+
+.nav-container {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.brand-icon {
+    font-size: 1.7rem;
+}
+
+.back-home {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.back-home:hover {
+    color: var(--primary);
+}
+
+
+/* =========================================
+   Main Authentication Section
+   ========================================= */
+
+.auth-section {
+    flex: 1;
+    padding: 70px 20px;
+}
+
+.auth-container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 70px;
+    align-items: center;
+}
+
+
+/* =========================================
+   Left Introduction
+   ========================================= */
+
+.auth-intro {
+    max-width: 560px;
+}
+
+.intro-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    margin-bottom: 22px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.auth-intro h1 {
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 1.12;
+    margin-bottom: 22px;
+    letter-spacing: -1.5px;
+}
+
+.auth-intro h1 span {
+    display: block;
+    color: var(--primary);
+}
+
+.auth-intro > p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 520px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   Introduction Features
+   ========================================= */
+
+.intro-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.intro-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.intro-feature span {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.intro-feature p {
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+
+/* =========================================
+   Register Card
+   ========================================= */
+
+.auth-card {
+    background: var(--white);
+
+    padding: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 16px;
+
+    background: var(--primary-light);
+    border-radius: 50%;
+
+    font-size: 1.5rem;
+}
+
+.card-header h2 {
+    font-size: 1.65rem;
+    margin-bottom: 8px;
+}
+
+.card-header p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+
+/* =========================================
+   Form
+   ========================================= */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--white);
+    color: var(--text-dark);
+
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(47, 125, 50, 0.1);
+}
+
+.helptext {
+    color: var(--text-light);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.form-group ul {
+    margin: 0;
+    padding-left: 18px;
+
+    color: var(--text-light);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.form-errors,
+.field-error {
+    color: var(--danger);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   Button
+   ========================================= */
+
+.auth-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.auth-button:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(47, 125, 50, 0.2);
+}
+
+.auth-button span {
+    font-size: 1.1rem;
+}
+
+
+/* =========================================
+   Card Footer
+   ========================================= */
+
+.auth-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+.auth-footer p {
+    color: var(--text-light);
+    font-size: 0.88rem;
+}
+
+.auth-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   Page Footer
+   ========================================= */
+
+.auth-footer-main {
+    padding: 22px 20px;
+
+    border-top: 1px solid var(--border);
+
+    background: var(--white);
+
+    text-align: center;
+}
+
+.auth-footer-main p {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .auth-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .auth-intro {
+        max-width: 650px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .auth-intro > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .intro-features {
+        align-items: center;
+    }
+
+    .auth-card {
+        width: min(460px, 100%);
+        margin: 0 auto;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .nav-container {
+        min-height: 68px;
+    }
+
+    .brand {
+        font-size: 1.15rem;
+    }
+
+    .back-home {
+        font-size: 0.82rem;
+    }
+
+    .auth-section {
+        padding: 45px 15px;
+    }
+
+    .auth-intro h1 {
+        font-size: 2.25rem;
+    }
+
+    .auth-intro > p {
+        font-size: 0.95rem;
+    }
+
+    .auth-card {
+        padding: 30px 22px;
+        border-radius: 14px;
+    }
+
+    .card-header h2 {
+        font-size: 1.45rem;
+    }
+}
