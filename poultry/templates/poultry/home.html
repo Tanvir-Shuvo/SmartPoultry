@@ -1,0 +1,476 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartPoultry | Modern Poultry Farm Management</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/home.css' %}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="container nav-container">
+
+            <a href="{% url 'home' %}" class="logo">
+                <span class="logo-icon">🐔</span>
+                <span>Smart<span>Poultry</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="/admin/">Login</a>
+                <a href="/admin/" class="nav-register">Register</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        🐔 Smart Poultry Management
+                    </span>
+
+                    <h1>
+                        Modern Poultry
+                        <span>Farm Management</span>
+                    </h1>
+
+                    <p>
+                        Manage your poultry farms, batches, daily records,
+                        egg production, expenses and sales from one
+                        simple and organized platform.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="/admin/" class="btn btn-primary">
+                            Get Started
+                            <span>→</span>
+                        </a>
+
+                        <a href="#features" class="btn btn-secondary">
+                            Explore Features
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-header">
+                            <div>
+                                <span class="small-label">SmartPoultry</span>
+                                <h3>Farm Overview</h3>
+                            </div>
+
+                            <div class="dashboard-icon">🐔</div>
+                        </div>
+
+                        <div class="overview-grid">
+
+                            <div class="overview-item">
+                                <span class="overview-icon">🏡</span>
+                                <div>
+                                    <strong>Farm</strong>
+                                    <small>Management</small>
+                                </div>
+                            </div>
+
+                            <div class="overview-item">
+                                <span class="overview-icon">🐥</span>
+                                <div>
+                                    <strong>Batch</strong>
+                                    <small>Tracking</small>
+                                </div>
+                            </div>
+
+                            <div class="overview-item">
+                                <span class="overview-icon">📋</span>
+                                <div>
+                                    <strong>Daily</strong>
+                                    <small>Records</small>
+                                </div>
+                            </div>
+
+                            <div class="overview-item">
+                                <span class="overview-icon">🥚</span>
+                                <div>
+                                    <strong>Egg</strong>
+                                    <small>Production</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="dashboard-bottom">
+                            <span>Everything organized in one place</span>
+                            <span class="status-dot"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+        <section class="features-section" id="features">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">CORE FEATURES</span>
+
+                    <h2>
+                        Everything You Need to
+                        <span>Manage Your Farm</span>
+                    </h2>
+
+                    <p>
+                        SmartPoultry brings the essential parts of poultry
+                        farm management together in one organized system.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <!-- Farm -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon farm-icon">
+                            🏡
+                        </div>
+
+                        <h3>Farm Management</h3>
+
+                        <p>
+                            Create and manage your poultry farms with
+                            important information such as location,
+                            type, capacity and start date.
+                        </p>
+
+                        <span class="feature-number">01</span>
+
+                    </article>
+
+
+                    <!-- Batch -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon batch-icon">
+                            🐥
+                        </div>
+
+                        <h3>Batch Management</h3>
+
+                        <p>
+                            Organize birds into batches and track
+                            poultry type, bird count, purchase price,
+                            dates and batch status.
+                        </p>
+
+                        <span class="feature-number">02</span>
+
+                    </article>
+
+
+                    <!-- Daily -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon daily-icon">
+                            📋
+                        </div>
+
+                        <h3>Daily Records</h3>
+
+                        <p>
+                            Keep daily records of feed, water, mortality,
+                            sickness, medicine usage and important notes.
+                        </p>
+
+                        <span class="feature-number">03</span>
+
+                    </article>
+
+
+                    <!-- Egg -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon egg-icon">
+                            🥚
+                        </div>
+
+                        <h3>Egg Production</h3>
+
+                        <p>
+                            Record daily egg production and damaged eggs
+                            to maintain an organized production history.
+                        </p>
+
+                        <span class="feature-number">04</span>
+
+                    </article>
+
+
+                    <!-- Expense -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon expense-icon">
+                            💰
+                        </div>
+
+                        <h3>Expense Management</h3>
+
+                        <p>
+                            Track farm and batch-related expenses with
+                            categories, amounts, dates and descriptions.
+                        </p>
+
+                        <span class="feature-number">05</span>
+
+                    </article>
+
+
+                    <!-- Sales -->
+                    <article class="feature-card">
+
+                        <div class="feature-icon sales-icon">
+                            📦
+                        </div>
+
+                        <h3>Sales Management</h3>
+
+                        <p>
+                            Manage poultry and egg sales with quantities,
+                            prices, buyers, dates and batch information.
+                        </p>
+
+                        <span class="feature-number">06</span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+        <section class="about-section" id="about">
+
+            <div class="container about-container">
+
+                <div class="about-visual">
+
+                    <div class="about-card">
+
+                        <div class="about-main-icon">
+                            🐔
+                        </div>
+
+                        <div class="about-ring ring-one"></div>
+                        <div class="about-ring ring-two"></div>
+
+                        <div class="about-floating-card floating-one">
+                            📊
+                            <span>Organized Data</span>
+                        </div>
+
+                        <div class="about-floating-card floating-two">
+                            🌱
+                            <span>Better Management</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-content">
+
+                    <span class="section-label">ABOUT SMARTPOULTRY</span>
+
+                    <h2>
+                        Simple Management.
+                        <span>Better Decisions.</span>
+                    </h2>
+
+                    <p>
+                        Poultry farm management involves many different
+                        types of information. Farm details, batches,
+                        daily activities, production, expenses and sales
+                        all need to be recorded and organized.
+                    </p>
+
+                    <p>
+                        SmartPoultry is designed to bring these activities
+                        into one structured system so that farm information
+                        can be managed more efficiently and consistently.
+                    </p>
+
+                    <div class="about-points">
+
+                        <div class="about-point">
+                            <span>✓</span>
+                            <p>Centralized farm information</p>
+                        </div>
+
+                        <div class="about-point">
+                            <span>✓</span>
+                            <p>Organized poultry batch tracking</p>
+                        </div>
+
+                        <div class="about-point">
+                            <span>✓</span>
+                            <p>Structured daily and production records</p>
+                        </div>
+
+                        <div class="about-point">
+                            <span>✓</span>
+                            <p>Expense and sales management</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-card">
+
+                    <div class="cta-content">
+
+                        <span class="cta-label">START MANAGING SMARTER</span>
+
+                        <h2>
+                            Bring Your Poultry Farm
+                            <span>Into One System</span>
+                        </h2>
+
+                        <p>
+                            Keep your farm information organized and
+                            manage your poultry operations from one place.
+                        </p>
+
+                        <a href="/admin/" class="btn btn-light">
+                            Get Started
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                    <div class="cta-decoration">
+                        🐔
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+
+        <div class="container footer-container">
+
+            <div class="footer-brand">
+
+                <a href="{% url 'home' %}" class="logo footer-logo">
+                    <span class="logo-icon">🐔</span>
+                    <span>Smart<span>Poultry</span></span>
+                </a>
+
+                <p>
+                    A modern poultry farm management system
+                    designed to keep farm operations organized.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+                    <h4>Navigation</h4>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                </div>
+
+                <div>
+                    <h4>Management</h4>
+                    <a href="#features">Farm</a>
+                    <a href="#features">Batch</a>
+                    <a href="#features">Records</a>
+                </div>
+
+                <div>
+                    <h4>Operations</h4>
+                    <a href="#features">Production</a>
+                    <a href="#features">Expenses</a>
+                    <a href="#features">Sales</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © 2026 SmartPoultry. All rights reserved.
+                </p>
+
+                <p>
+                    Modern Poultry Farm Management
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
