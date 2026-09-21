@@ -1,19 +1,24 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    ```
     <title>Dashboard | SmartPoultry</title>
 
     <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+    ```
+
 </head>
 
 <body>
 
+    ```
     <!-- Navbar -->
     <header class="dashboard-navbar">
 
@@ -80,7 +85,7 @@
                     </p>
                 </div>
 
-                <a href="#" class="primary-button">
+                <a href="{% url 'farm_create' %}" class="primary-button">
                     + Add Farm
                 </a>
 
@@ -254,7 +259,7 @@
                             managing your operations.
                         </p>
 
-                        <a href="#" class="primary-button">
+                        <a href="{% url 'farm_create' %}" class="primary-button">
                             + Add Your First Farm
                         </a>
 
@@ -351,7 +356,7 @@
 
                 <div class="quick-actions">
 
-                    <a href="#" class="primary-button">
+                    <a href="{% url 'farm_create' %}" class="primary-button">
                         + Add Farm
                     </a>
 
@@ -381,6 +386,7 @@
         </p>
 
     </footer>
+    ```
 
 </body>
 
