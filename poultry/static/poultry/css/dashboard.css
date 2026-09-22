@@ -1,4 +1,5 @@
 :root {
+
     --primary: #2f7d32;
     --primary-dark: #256428;
     --primary-light: #eaf6eb;
@@ -13,7 +14,13 @@
     --danger: #dc2626;
 
     --shadow: 0 15px 40px rgba(31, 41, 55, 0.08);
+
 }
+
+
+/* =========================================
+   GLOBAL
+========================================= */
 
 * {
     margin: 0;
@@ -43,59 +50,83 @@ a {
 }
 
 
-/* =========================
+/* =========================================
    NAVBAR
-========================= */
+========================================= */
 
 .dashboard-navbar {
+
     background: var(--white);
+
     border-bottom: 1px solid var(--border);
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
 }
 
 .nav-container {
+
     min-height: 74px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 30px;
 }
 
 .brand {
+
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     font-size: 1.25rem;
+
     font-weight: 700;
+
     color: var(--text-dark);
 }
 
 .brand-icon {
+
     width: 40px;
     height: 40px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background: var(--primary-light);
+
     border-radius: 12px;
 
     font-size: 1.3rem;
 }
 
 .nav-links {
+
     display: flex;
+
     align-items: center;
+
     gap: 28px;
 }
 
 .nav-links a {
+
     color: var(--text-light);
+
     font-size: 0.95rem;
+
     font-weight: 600;
 
     transition: color 0.2s ease;
@@ -103,128 +134,166 @@ a {
 
 .nav-links a:hover,
 .nav-links a.active {
+
     color: var(--primary);
 }
 
 .nav-links .logout-link {
+
     color: var(--danger);
 }
 
 
-/* =========================
+/* =========================================
    MAIN DASHBOARD
-========================= */
+========================================= */
 
 .dashboard-main {
+
     padding: 55px 0 70px;
 }
 
 
-/* =========================
+/* =========================================
    DASHBOARD HERO
-========================= */
+========================================= */
 
 .dashboard-hero {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 30px;
 
     margin-bottom: 45px;
 }
 
 .hero-badge {
+
     display: inline-flex;
+
     align-items: center;
 
     padding: 7px 13px;
 
     background: var(--primary-light);
+
     color: var(--primary);
 
     border-radius: 999px;
 
     font-size: 0.82rem;
+
     font-weight: 700;
 
     margin-bottom: 15px;
 }
 
 .dashboard-hero h1 {
+
     font-size: clamp(2rem, 4vw, 3rem);
+
     line-height: 1.15;
+
     margin-bottom: 12px;
 }
 
 .dashboard-hero p {
+
     color: var(--text-light);
+
     font-size: 1.05rem;
 }
 
 
-/* =========================
+/* =========================================
    BUTTONS
-========================= */
+========================================= */
 
 .primary-button,
 .secondary-button {
+
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     min-height: 46px;
+
     padding: 0 20px;
 
     border-radius: 10px;
 
     font-weight: 700;
+
     font-size: 0.92rem;
 
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .primary-button {
+
     background: var(--primary);
+
     color: var(--white);
 }
 
 .primary-button:hover {
+
     background: var(--primary-dark);
+
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(47, 125, 50, 0.18);
+
+    box-shadow:
+        0 8px 20px rgba(47, 125, 50, 0.18);
 }
 
 .secondary-button {
+
     background: var(--white);
+
     color: var(--primary);
+
     border: 1px solid var(--border);
 }
 
 .secondary-button:hover {
+
     border-color: var(--primary);
+
     transform: translateY(-2px);
 }
 
 
-/* =========================
+/* =========================================
    SUMMARY CARDS
-========================= */
+========================================= */
 
 .summary-grid {
+
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 20px;
 
     margin-bottom: 55px;
 }
 
 .summary-card {
+
     background: var(--white);
 
     border: 1px solid var(--border);
+
     border-radius: 16px;
 
     padding: 24px;
@@ -237,19 +306,27 @@ a {
 }
 
 .summary-card:hover {
+
     transform: translateY(-4px);
-    box-shadow: 0 20px 45px rgba(31, 41, 55, 0.11);
+
+    box-shadow:
+        0 20px 45px rgba(31, 41, 55, 0.11);
 }
 
 .card-icon {
+
     width: 46px;
+
     height: 46px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: var(--primary-light);
+
     border-radius: 12px;
 
     font-size: 1.35rem;
@@ -258,49 +335,61 @@ a {
 }
 
 .summary-card h3 {
+
     font-size: 0.9rem;
+
     color: var(--text-light);
 
     margin-bottom: 5px;
 }
 
 .summary-card strong {
+
     display: block;
 
     font-size: 2rem;
+
     line-height: 1.2;
 
     margin-bottom: 5px;
 }
 
 .summary-card p {
+
     color: var(--text-light);
+
     font-size: 0.82rem;
 }
 
 
-/* =========================
+/* =========================================
    SECTIONS
-========================= */
+========================================= */
 
 .dashboard-section {
+
     margin-bottom: 55px;
 }
 
 .section-heading {
+
     display: flex;
+
     align-items: flex-end;
+
     justify-content: space-between;
 
     margin-bottom: 22px;
 }
 
 .section-label {
+
     display: block;
 
     color: var(--primary);
 
     font-size: 0.72rem;
+
     font-weight: 800;
 
     letter-spacing: 1.2px;
@@ -309,78 +398,103 @@ a {
 }
 
 .section-heading h2 {
+
     font-size: 1.7rem;
+
     line-height: 1.2;
 }
 
 .section-link {
+
     color: var(--primary);
+
     font-size: 0.9rem;
+
     font-weight: 700;
 }
 
 
-/* =========================
+/* =========================================
    OPERATIONS
-========================= */
+========================================= */
 
 .operations-grid {
+
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 18px;
 }
 
 .operation-card {
+
     display: flex;
+
     align-items: center;
+
     gap: 15px;
 
     background: var(--white);
 
     border: 1px solid var(--border);
+
     border-radius: 14px;
 
     padding: 20px;
 
-    box-shadow: 0 8px 25px rgba(31, 41, 55, 0.05);
+    box-shadow:
+        0 8px 25px rgba(31, 41, 55, 0.05);
 }
 
-.operation-card > span {
+.operation-card>span {
+
     width: 44px;
+
     height: 44px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: var(--primary-light);
+
     border-radius: 12px;
 
     font-size: 1.2rem;
 }
 
 .operation-card h3 {
+
     color: var(--text-light);
+
     font-size: 0.82rem;
+
     margin-bottom: 3px;
 }
 
 .operation-card strong {
+
     font-size: 1.25rem;
 }
 
 
-/* =========================
+/* =========================================
    FINANCE
-========================= */
+========================================= */
 
 .finance-card {
+
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
 
     background: var(--white);
 
     border: 1px solid var(--border);
+
     border-radius: 16px;
 
     box-shadow: var(--shadow);
@@ -389,106 +503,70 @@ a {
 }
 
 .finance-item {
+
     display: flex;
+
     align-items: center;
+
     gap: 16px;
 
     padding: 28px;
 }
 
-.finance-item + .finance-item {
+.finance-item+.finance-item {
+
     border-left: 1px solid var(--border);
 }
 
-.finance-item > span {
+.finance-item>span {
+
     width: 48px;
+
     height: 48px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: var(--primary-light);
+
     border-radius: 12px;
 
     font-size: 1.3rem;
 }
 
 .finance-item p {
+
     color: var(--text-light);
+
     font-size: 0.85rem;
+
     margin-bottom: 3px;
 }
 
 .finance-item strong {
+
     font-size: 1.45rem;
 }
 
 .net-result strong {
+
     color: var(--primary);
 }
 
 
-/* =========================
-   FARM OVERVIEW
-========================= */
-
-.farm-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.empty-state {
-    grid-column: 1 / -1;
-
-    background: var(--white);
-
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-
-    padding: 55px 25px;
-
-    text-align: center;
-}
-
-.empty-icon {
-    width: 64px;
-    height: 64px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 18px;
-
-    background: var(--primary-light);
-    border-radius: 18px;
-
-    font-size: 1.7rem;
-}
-
-.empty-state h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-
-.empty-state p {
-    max-width: 450px;
-    margin: 0 auto 22px;
-
-    color: var(--text-light);
-}
-
-
-/* =========================
+/* =========================================
    ACTIVITY
-========================= */
+========================================= */
 
 .activity-card {
+
     background: var(--white);
 
     border: 1px solid var(--border);
+
     border-radius: 16px;
 
     box-shadow: var(--shadow);
@@ -497,52 +575,67 @@ a {
 }
 
 .activity-item {
+
     display: flex;
+
     align-items: center;
+
     gap: 16px;
 
     padding: 20px 24px;
 }
 
-.activity-item + .activity-item {
+.activity-item+.activity-item {
+
     border-top: 1px solid var(--border);
 }
 
 .activity-icon {
+
     width: 44px;
+
     height: 44px;
 
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: var(--primary-light);
+
     border-radius: 12px;
 
     font-size: 1.15rem;
 }
 
 .activity-item h3 {
+
     font-size: 0.95rem;
+
     margin-bottom: 2px;
 }
 
 .activity-item p {
+
     color: var(--text-light);
+
     font-size: 0.83rem;
 }
 
 
-/* =========================
-   CTA
-========================= */
+/* =========================================
+   DASHBOARD CTA
+========================================= */
 
 .dashboard-cta {
+
     background: var(--white);
 
     border: 1px solid var(--border);
+
     border-radius: 20px;
 
     padding: 50px 35px;
@@ -553,30 +646,39 @@ a {
 }
 
 .dashboard-cta h2 {
+
     font-size: clamp(1.6rem, 3vw, 2.2rem);
+
     margin-bottom: 10px;
 }
 
 .dashboard-cta p {
+
     max-width: 620px;
+
     margin: 0 auto 25px;
 
     color: var(--text-light);
 }
 
 .quick-actions {
+
     display: flex;
+
     justify-content: center;
+
     flex-wrap: wrap;
+
     gap: 12px;
 }
 
 
-/* =========================
+/* =========================================
    FOOTER
-========================= */
+========================================= */
 
 .dashboard-footer {
+
     padding: 25px 20px;
 
     border-top: 1px solid var(--border);
@@ -587,14 +689,16 @@ a {
 }
 
 .dashboard-footer p {
+
     color: var(--text-light);
+
     font-size: 0.82rem;
 }
 
 
-/* =========================
+/* =========================================
    TABLET
-========================= */
+========================================= */
 
 @media (max-width: 1000px) {
 
@@ -613,9 +717,9 @@ a {
 }
 
 
-/* =========================
+/* =========================================
    MOBILE
-========================= */
+========================================= */
 
 @media (max-width: 700px) {
 
@@ -642,7 +746,9 @@ a {
     }
 
     .dashboard-hero {
+
         flex-direction: column;
+
         align-items: flex-start;
 
         margin-bottom: 35px;
@@ -653,7 +759,9 @@ a {
     }
 
     .summary-grid {
+
         grid-template-columns: 1fr;
+
         gap: 14px;
 
         margin-bottom: 45px;
@@ -667,18 +775,18 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .finance-item + .finance-item {
+    .finance-item+.finance-item {
+
         border-left: none;
+
         border-top: 1px solid var(--border);
     }
 
     .section-heading {
-        align-items: flex-start;
-        gap: 10px;
-    }
 
-    .farm-grid {
-        grid-template-columns: 1fr;
+        align-items: flex-start;
+
+        gap: 10px;
     }
 
     .dashboard-cta {
@@ -686,6 +794,7 @@ a {
     }
 
     .quick-actions {
+
         flex-direction: column;
     }
 
@@ -696,9 +805,9 @@ a {
 }
 
 
-/* =========================
+/* =========================================
    SMALL MOBILE
-========================= */
+========================================= */
 
 @media (max-width: 480px) {
 
@@ -707,7 +816,9 @@ a {
     }
 
     .brand-icon {
+
         width: 36px;
+
         height: 36px;
     }
 

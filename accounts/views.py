@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 
 
+def home_view(request):
+    return render(request, "poultry/home.html")
+
+
 def register_view(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)

@@ -1,24 +1,19 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    ```
     <title>Dashboard | SmartPoultry</title>
 
     <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
-    ```
-
 </head>
 
 <body>
 
-    ```
     <!-- Navbar -->
     <header class="dashboard-navbar">
 
@@ -31,19 +26,19 @@
 
             <nav class="nav-links">
 
-                <a href="/dashboard/" class="active">
+                <a href="{% url 'dashboard' %}" class="active">
                     Dashboard
                 </a>
 
-                <a href="#">
+                <a href="{% url 'farm_list' %}">
                     Farms
                 </a>
 
-                <a href="#">
+                <a href="/batches/">
                     Batches
                 </a>
 
-                <a href="#">
+                <a href="/records/">
                     Records
                 </a>
 
@@ -144,6 +139,7 @@
 
                     <div class="operation-card">
                         <span>🌾</span>
+
                         <div>
                             <h3>Feed Usage</h3>
                             <strong>0 kg</strong>
@@ -152,6 +148,7 @@
 
                     <div class="operation-card">
                         <span>💧</span>
+
                         <div>
                             <h3>Water Usage</h3>
                             <strong>0 L</strong>
@@ -160,6 +157,7 @@
 
                     <div class="operation-card">
                         <span>⚠️</span>
+
                         <div>
                             <h3>Mortality</h3>
                             <strong>0 birds</strong>
@@ -168,6 +166,7 @@
 
                     <div class="operation-card">
                         <span>🩺</span>
+
                         <div>
                             <h3>Sick Birds</h3>
                             <strong>0 birds</strong>
@@ -197,6 +196,7 @@
 
                     <div class="finance-item">
                         <span>💵</span>
+
                         <div>
                             <p>Total Sales</p>
                             <strong>৳ 0</strong>
@@ -205,6 +205,7 @@
 
                     <div class="finance-item">
                         <span>💰</span>
+
                         <div>
                             <p>Total Expenses</p>
                             <strong>৳ 0</strong>
@@ -213,6 +214,7 @@
 
                     <div class="finance-item net-result">
                         <span>📊</span>
+
                         <div>
                             <p>Net Result</p>
                             <strong>৳ 0</strong>
@@ -237,7 +239,7 @@
                         <h2>Farm Overview</h2>
                     </div>
 
-                    <a href="#" class="section-link">
+                    <a href="{% url 'farm_list' %}" class="section-link">
                         View All →
                     </a>
 
@@ -296,6 +298,7 @@
 
                         <div>
                             <h3>Egg Production</h3>
+
                             <p>
                                 No recent activity
                             </p>
@@ -311,6 +314,7 @@
 
                         <div>
                             <h3>Daily Records</h3>
+
                             <p>
                                 No recent activity
                             </p>
@@ -326,6 +330,7 @@
 
                         <div>
                             <h3>Expenses</h3>
+
                             <p>
                                 No recent activity
                             </p>
@@ -360,11 +365,11 @@
                         + Add Farm
                     </a>
 
-                    <a href="#" class="secondary-button">
+                    <a href="/batches/add/" class="secondary-button">
                         + Add Batch
                     </a>
 
-                    <a href="#" class="secondary-button">
+                    <a href="/records/add/" class="secondary-button">
                         + Daily Record
                     </a>
 
@@ -386,7 +391,6 @@
         </p>
 
     </footer>
-    ```
 
 </body>
 

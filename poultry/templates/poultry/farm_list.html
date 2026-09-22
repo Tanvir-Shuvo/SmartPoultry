@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Farms | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="dashboard-navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="brand">
+                <span class="brand-icon">🐔</span>
+                <span>SmartPoultry</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}" class="active">
+                    Farms
+                </a>
+
+                <a href="/batches/">
+                    Batches
+                </a>
+
+                <a href="/records/">
+                    Records
+                </a>
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/logout/" class="logout-link">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Farm List -->
+    <main class="dashboard-main">
+
+        <div class="container">
+
+            <section class="dashboard-hero">
+
+                <div>
+                    <span class="hero-badge">
+                        🏡 Farm Management
+                    </span>
+
+                    <h1>
+                        My Farms
+                    </h1>
+
+                    <p>
+                        Manage and monitor your poultry farms from one place.
+                    </p>
+                </div>
+
+                <a href="{% url 'farm_create' %}" class="primary-button">
+                    + Add Farm
+                </a>
+
+            </section>
+
+
+            {% if farms %}
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">
+                            YOUR FARMS
+                        </span>
+
+                        <h2>Farm Overview</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="farm-grid">
+
+                    {% for farm in farms %}
+
+                    <div class="farm-card">
+
+                        <div class="farm-card-header">
+
+                            <h2>
+                                {{ farm.name }}
+                            </h2>
+
+                            <span>
+                                {{ farm.get_farm_type_display }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="farm-info">
+
+                            <p>
+                                <strong>Location:</strong>
+                                {{ farm.location }}
+                            </p>
+
+                            <p>
+                                <strong>Capacity:</strong>
+                                {{ farm.capacity }} birds
+                            </p>
+
+                            <p>
+                                <strong>Start Date:</strong>
+                                {{ farm.start_date }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="farm-card-footer">
+
+                            <a href="{% url 'farm_detail' farm.id %}" class="btn-secondary">
+                                View Details
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+            {% else %}
+
+            <section class="dashboard-section">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        🏡
+                    </div>
+
+                    <h3>
+                        No Farms Yet
+                    </h3>
+
+                    <p>
+                        You haven't added any farm yet.
+                        Create your first poultry farm to get started.
+                    </p>
+
+                    <a href="{% url 'farm_create' %}" class="primary-button">
+                        + Create Your First Farm
+                    </a>
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+
+            <!-- Quick Actions -->
+            <section class="dashboard-cta">
+
+                <span class="hero-badge">
+                    🐔 Manage Your Farm
+                </span>
+
+                <h2>
+                    Everything You Need in One Place
+                </h2>
+
+                <p>
+                    Manage farms, batches, records, production,
+                    expenses and sales from SmartPoultry.
+                </p>
+
+                <div class="quick-actions">
+
+                    <a href="{% url 'farm_create' %}" class="primary-button">
+                        + Add Farm
+                    </a>
+
+                    <a href="/batches/add/" class="secondary-button">
+                        + Add Batch
+                    </a>
+
+                    <a href="/records/add/" class="secondary-button">
+                        + Daily Record
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 SmartPoultry.
+            Modern Poultry Farm Management.
+        </p>
+
+    </footer>
+    ```
+
+</body>
+
+</html>

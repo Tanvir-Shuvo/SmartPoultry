@@ -1,0 +1,203 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ farm.name }} | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="brand">
+
+                <span class="brand-icon">🐔</span>
+
+                <span>SmartPoultry</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}" class="active">
+                    Farms
+                </a>
+
+                <a href="/batches/">
+                    Batches
+                </a>
+
+                <a href="/records/">
+                    Records
+                </a>
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/logout/" class="logout-link">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Farm Details -->
+
+    <main class="dashboard-main">
+
+        <div class="container">
+
+            <section class="dashboard-hero">
+
+                <div>
+
+                    <span class="hero-badge">
+                        🏡 Farm Details
+                    </span>
+
+                    <h1>
+                        {{ farm.name }}
+                    </h1>
+
+                    <p>
+                        View detailed information about your poultry farm.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            FARM INFORMATION
+                        </span>
+
+                        <h2>
+                            {{ farm.name }}
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="farm-grid">
+
+                    <div class="farm-card">
+
+                        <div class="farm-card-header">
+
+                            <h2>
+                                Farm Information
+                            </h2>
+
+                            <span>
+                                {{ farm.get_farm_type_display }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="farm-info">
+
+                            <p>
+                                <strong>Farm Name:</strong>
+                                {{ farm.name }}
+                            </p>
+
+                            <p>
+                                <strong>Location:</strong>
+                                {{ farm.location }}
+                            </p>
+
+                            <p>
+                                <strong>Farm Type:</strong>
+                                {{ farm.get_farm_type_display }}
+                            </p>
+
+                            <p>
+                                <strong>Capacity:</strong>
+                                {{ farm.capacity }} birds
+                            </p>
+
+                            <p>
+                                <strong>Start Date:</strong>
+                                {{ farm.start_date }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="farm-card-footer">
+
+                            <a href="{% url 'farm_list' %}" class="secondary-button">
+                                ← Back to Farms
+                            </a>
+
+                            <a href="{% url 'farm_edit' farm.id %}" class="primary-button">
+                                Edit Farm
+                            </a>
+
+                            <a href="{% url 'farm_delete' farm.id %}" class="secondary-button">
+                                Delete Farm
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 SmartPoultry.
+            Modern Poultry Farm Management.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

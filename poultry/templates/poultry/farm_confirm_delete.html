@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delete {{ farm.name }} | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="container nav-container">
+
+            <a href="{% url 'dashboard' %}" class="brand">
+
+                <span class="brand-icon">🐔</span>
+
+                <span>SmartPoultry</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}" class="active">
+                    Farms
+                </a>
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="{% url 'logout' %}" class="logout-link">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Delete Confirmation -->
+
+    <main class="dashboard-main">
+
+        <div class="container">
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            DELETE FARM
+                        </span>
+
+                        <h1>
+                            Delete {{ farm.name }}?
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <p>
+                        Are you sure you want to delete
+                        <strong>{{ farm.name }}</strong>?
+                    </p>
+
+                    <p>
+                        This action cannot be undone.
+                    </p>
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="quick-actions">
+
+                            <a href="{% url 'farm_detail' farm.id %}" class="secondary-button">
+                                Cancel
+                            </a>
+
+                            <button type="submit" class="primary-button">
+                                Yes, Delete Farm
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 SmartPoultry.
+            Modern Poultry Farm Management.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
