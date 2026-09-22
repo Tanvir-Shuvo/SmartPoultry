@@ -4,24 +4,31 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard | SmartPoultry</title>
 
     <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+
 </head>
 
 <body>
 
     <!-- Navbar -->
+
     <header class="dashboard-navbar">
 
         <div class="container nav-container">
 
             <a href="/" class="brand">
+
                 <span class="brand-icon">🐔</span>
+
                 <span>SmartPoultry</span>
+
             </a>
 
             <nav class="nav-links">
@@ -58,14 +65,18 @@
 
 
     <!-- Main Dashboard -->
+
     <main class="dashboard-main">
 
         <div class="container">
 
+
             <!-- Welcome Section -->
+
             <section class="dashboard-hero">
 
                 <div>
+
                     <span class="hero-badge">
                         🐔 Smart Farm Management
                     </span>
@@ -78,286 +89,11 @@
                         Manage your poultry farms smarter with
                         SmartPoultry.
                     </p>
-                </div>
-
-                <a href="{% url 'farm_create' %}" class="primary-button">
-                    + Add Farm
-                </a>
-
-            </section>
-
-
-            <!-- Summary Cards -->
-            <section class="summary-grid">
-
-                <div class="summary-card">
-                    <div class="card-icon">🏡</div>
-                    <h3>Total Farms</h3>
-                    <strong>{{ total_farms }}</strong>
-                    <p>Managed farms</p>
-                </div>
-
-                <div class="summary-card">
-                    <div class="card-icon">🐔</div>
-                    <h3>Active Batches</h3>
-                    <strong>0</strong>
-                    <p>Currently active</p>
-                </div>
-
-                <div class="summary-card">
-                    <div class="card-icon">🐣</div>
-                    <h3>Current Birds</h3>
-                    <strong>0</strong>
-                    <p>Birds in batches</p>
-                </div>
-
-                <div class="summary-card">
-                    <div class="card-icon">🥚</div>
-                    <h3>Egg Production</h3>
-                    <strong>0</strong>
-                    <p>Total eggs</p>
-                </div>
-
-            </section>
-
-
-            <!-- Operations -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-                    <div>
-                        <span class="section-label">
-                            OPERATIONS
-                        </span>
-
-                        <h2>Farm Operations</h2>
-                    </div>
-                </div>
-
-
-                <div class="operations-grid">
-
-                    <div class="operation-card">
-                        <span>🌾</span>
-
-                        <div>
-                            <h3>Feed Usage</h3>
-                            <strong>0 kg</strong>
-                        </div>
-                    </div>
-
-                    <div class="operation-card">
-                        <span>💧</span>
-
-                        <div>
-                            <h3>Water Usage</h3>
-                            <strong>0 L</strong>
-                        </div>
-                    </div>
-
-                    <div class="operation-card">
-                        <span>⚠️</span>
-
-                        <div>
-                            <h3>Mortality</h3>
-                            <strong>0 birds</strong>
-                        </div>
-                    </div>
-
-                    <div class="operation-card">
-                        <span>🩺</span>
-
-                        <div>
-                            <h3>Sick Birds</h3>
-                            <strong>0 birds</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- Financial Overview -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-                    <div>
-                        <span class="section-label">
-                            FINANCE
-                        </span>
-
-                        <h2>Financial Overview</h2>
-                    </div>
-                </div>
-
-
-                <div class="finance-card">
-
-                    <div class="finance-item">
-                        <span>💵</span>
-
-                        <div>
-                            <p>Total Sales</p>
-                            <strong>৳ 0</strong>
-                        </div>
-                    </div>
-
-                    <div class="finance-item">
-                        <span>💰</span>
-
-                        <div>
-                            <p>Total Expenses</p>
-                            <strong>৳ 0</strong>
-                        </div>
-                    </div>
-
-                    <div class="finance-item net-result">
-                        <span>📊</span>
-
-                        <div>
-                            <p>Net Result</p>
-                            <strong>৳ 0</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- Farms -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="section-label">
-                            YOUR FARMS
-                        </span>
-
-                        <h2>Farm Overview</h2>
-                    </div>
-
-                    <a href="{% url 'farm_list' %}" class="section-link">
-                        View All →
-                    </a>
 
                 </div>
 
 
-                <div class="farm-grid">
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            🏡
-                        </div>
-
-                        <h3>No Farms Yet</h3>
-
-                        <p>
-                            Add your first poultry farm to start
-                            managing your operations.
-                        </p>
-
-                        <a href="{% url 'farm_create' %}" class="primary-button">
-                            + Add Your First Farm
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- Recent Activity -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="section-label">
-                            ACTIVITY
-                        </span>
-
-                        <h2>Recent Activity</h2>
-                    </div>
-
-                </div>
-
-
-                <div class="activity-card">
-
-                    <div class="activity-item">
-
-                        <span class="activity-icon">
-                            🥚
-                        </span>
-
-                        <div>
-                            <h3>Egg Production</h3>
-
-                            <p>
-                                No recent activity
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="activity-item">
-
-                        <span class="activity-icon">
-                            📋
-                        </span>
-
-                        <div>
-                            <h3>Daily Records</h3>
-
-                            <p>
-                                No recent activity
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="activity-item">
-
-                        <span class="activity-icon">
-                            💰
-                        </span>
-
-                        <div>
-                            <h3>Expenses</h3>
-
-                            <p>
-                                No recent activity
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- Quick Actions -->
-            <section class="dashboard-cta">
-
-                <span class="hero-badge">
-                    🐔 Manage Your Farm
-                </span>
-
-                <h2>
-                    Everything You Need in One Place
-                </h2>
-
-                <p>
-                    Manage farms, batches, records, production,
-                    expenses and sales from SmartPoultry.
-                </p>
+                <!-- Top Quick Actions -->
 
                 <div class="quick-actions">
 
@@ -377,12 +113,557 @@
 
             </section>
 
+
+            <!-- Summary Cards -->
+
+            <section class="summary-grid">
+
+
+                <!-- Total Farms -->
+
+                <a href="{% url 'farm_list' %}" class="summary-card">
+
+                    <div class="card-icon">
+                        🏡
+                    </div>
+
+                    <h3>
+                        Total Farms
+                    </h3>
+
+                    <strong>
+                        {{ total_farms }}
+                    </strong>
+
+                    <p>
+                        Managed farms
+                    </p>
+
+                </a>
+
+
+                <!-- Active Batches -->
+
+                <a href="/batches/" class="summary-card">
+
+                    <div class="card-icon">
+                        🐔
+                    </div>
+
+                    <h3>
+                        Active Batches
+                    </h3>
+
+                    <strong>
+                        {{ active_batches }}
+                    </strong>
+
+                    <p>
+                        Currently active
+                    </p>
+
+                </a>
+
+
+                <!-- Current Birds -->
+
+                <a href="/batches/" class="summary-card">
+
+                    <div class="card-icon">
+                        🐣
+                    </div>
+
+                    <h3>
+                        Current Birds
+                    </h3>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <p>
+                        Birds in batches
+                    </p>
+
+                </a>
+
+
+                <!-- Egg Production -->
+
+                <a href="/records/" class="summary-card">
+
+                    <div class="card-icon">
+                        🥚
+                    </div>
+
+                    <h3>
+                        Egg Production
+                    </h3>
+
+                    <strong>
+                        0
+                    </strong>
+
+                    <p>
+                        Total eggs
+                    </p>
+
+                </a>
+
+
+            </section>
+
+
+            <!-- Operations -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            OPERATIONS
+                        </span>
+
+                        <h2>
+                            Farm Operations
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="operations-grid">
+
+
+                    <div class="operation-card">
+
+                        <span>
+                            🌾
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Feed Usage
+                            </h3>
+
+                            <strong>
+                                0 kg
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="operation-card">
+
+                        <span>
+                            💧
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Water Usage
+                            </h3>
+
+                            <strong>
+                                0 L
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="operation-card">
+
+                        <span>
+                            ⚠️
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Mortality
+                            </h3>
+
+                            <strong>
+                                0 birds
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="operation-card">
+
+                        <span>
+                            🩺
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Sick Birds
+                            </h3>
+
+                            <strong>
+                                0 birds
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- Financial Overview -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            FINANCE
+                        </span>
+
+                        <h2>
+                            Financial Overview
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="finance-card">
+
+
+                    <div class="finance-item">
+
+                        <span>
+                            💵
+                        </span>
+
+                        <div>
+
+                            <p>
+                                Total Sales
+                            </p>
+
+                            <strong>
+                                ৳ 0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="finance-item">
+
+                        <span>
+                            💰
+                        </span>
+
+                        <div>
+
+                            <p>
+                                Total Expenses
+                            </p>
+
+                            <strong>
+                                ৳ 0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="finance-item net-result">
+
+                        <span>
+                            📊
+                        </span>
+
+                        <div>
+
+                            <p>
+                                Net Result
+                            </p>
+
+                            <strong>
+                                ৳ 0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- Farms -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            YOUR FARMS
+                        </span>
+
+                        <h2>
+                            Farm Overview
+                        </h2>
+
+                    </div>
+
+
+                    <a href="{% url 'farm_list' %}" class="section-link">
+                        View All →
+                    </a>
+
+                </div>
+
+
+                <div class="farm-grid">
+
+                    {% for farm in farms %}
+
+                    <div class="farm-card">
+
+                        <div class="farm-card-header">
+
+                            <h2>
+                                {{ farm.name }}
+                            </h2>
+
+                            <span>
+                                {{ farm.get_farm_type_display }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="farm-info">
+
+                            <p>
+                                <strong>Location:</strong>
+                                {{ farm.location }}
+                            </p>
+
+                            <p>
+                                <strong>Capacity:</strong>
+                                {{ farm.capacity }} birds
+                            </p>
+
+                            <p>
+                                <strong>Batches:</strong>
+                                {{ farm.batches.count }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="farm-card-footer">
+
+                            <a href="{% url 'farm_detail' farm.id %}" class="primary-button">
+                                View Farm
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            🏡
+                        </div>
+
+                        <h3>
+                            No Farms Yet
+                        </h3>
+
+                        <p>
+                            Add your first poultry farm to start
+                            managing your operations.
+                        </p>
+
+                        <a href="{% url 'farm_create' %}" class="primary-button">
+                            + Add Your First Farm
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+
+            <!-- Recent Activity -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACTIVITY
+                        </span>
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            🥚
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Egg Production
+                            </h3>
+
+                            <p>
+                                No recent activity
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            📋
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Daily Records
+                            </h3>
+
+                            <p>
+                                No recent activity
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            💰
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Expenses
+                            </h3>
+
+                            <p>
+                                No recent activity
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- Quick Actions -->
+
+            <section class="dashboard-cta">
+
+                <span class="hero-badge">
+                    🐔 Manage Your Farm
+                </span>
+
+                <h2>
+                    Everything You Need in One Place
+                </h2>
+
+                <p>
+                    Manage farms, batches, records, production,
+                    expenses and sales from SmartPoultry.
+                </p>
+
+
+                <div class="quick-actions">
+
+
+                    <a href="{% url 'farm_create' %}" class="primary-button">
+                        + Add Farm
+                    </a>
+
+
+                    <a href="/batches/add/" class="secondary-button">
+                        + Add Batch
+                    </a>
+
+
+                    <a href="/records/add/" class="secondary-button">
+                        + Daily Record
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
         </div>
 
     </main>
 
 
     <!-- Footer -->
+
     <footer class="dashboard-footer">
 
         <p>

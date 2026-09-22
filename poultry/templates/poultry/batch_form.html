@@ -1,0 +1,355 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Batch | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/batch_form.css' %}">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="navbar-container">
+
+            <a href="{% url 'dashboard' %}" class="brand">
+                <span class="brand-icon">🐔</span>
+                <span>SmartPoultry</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}">
+                    Farms
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="page-container">
+
+        <!-- Page Header -->
+
+        <section class="page-header">
+
+            <div>
+
+                <span class="page-label">
+                    BATCH MANAGEMENT
+                </span>
+
+                <h1>
+                    Add New Batch
+                </h1>
+
+                <p>
+                    Create a new poultry batch and assign it
+                    to one of your farms.
+                </p>
+
+            </div>
+
+            <a href="{% url 'dashboard' %}" class="back-link">
+                ← Back to Dashboard
+            </a>
+
+        </section>
+
+
+        <!-- Form Card -->
+
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="form-icon">
+                    🐔
+                </div>
+
+                <div>
+
+                    <h2>
+                        Batch Information
+                    </h2>
+
+                    <p>
+                        Enter the basic information for this batch.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if form.non_field_errors %}
+
+            <div class="error-box">
+
+                {{ form.non_field_errors }}
+
+            </div>
+
+            {% endif %}
+
+
+            <form method="post" class="batch-form">
+
+                {% csrf_token %}
+
+
+                <!-- Farm -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.farm.id_for_label }}">
+                        Farm
+                    </label>
+
+                    {{ form.farm }}
+
+                    {% if form.farm.errors %}
+
+                    <div class="field-error">
+                        {{ form.farm.errors }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Batch Code -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.code.id_for_label }}">
+                        Batch Code
+                    </label>
+
+                    {{ form.code }}
+
+                    <span class="field-hint">
+                        Example: B001, B002, LAYER-01
+                    </span>
+
+                    {% if form.code.errors %}
+
+                    <div class="field-error">
+                        {{ form.code.errors }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Poultry Type -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.poultry_type.id_for_label }}">
+                        Poultry Type
+                    </label>
+
+                    {{ form.poultry_type }}
+
+                    {% if form.poultry_type.errors %}
+
+                    <div class="field-error">
+                        {{ form.poultry_type.errors }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Two Column -->
+
+                <div class="form-row">
+
+
+                    <!-- Start Date -->
+
+                    <div class="form-group">
+
+                        <label for="{{ form.start_date.id_for_label }}">
+                            Start Date
+                        </label>
+
+                        {{ form.start_date }}
+
+                        {% if form.start_date.errors %}
+
+                        <div class="field-error">
+                            {{ form.start_date.errors }}
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Initial Birds -->
+
+                    <div class="form-group">
+
+                        <label for="{{ form.initial_bird_count.id_for_label }}">
+                            Initial Bird Count
+                        </label>
+
+                        {{ form.initial_bird_count }}
+
+                        {% if form.initial_bird_count.errors %}
+
+                        <div class="field-error">
+                            {{ form.initial_bird_count.errors }}
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Purchase Price -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.purchase_price_per_bird.id_for_label }}">
+                        Purchase Price Per Bird
+                    </label>
+
+                    <div class="price-input">
+
+                        <span>
+                            ৳
+                        </span>
+
+                        {{ form.purchase_price_per_bird }}
+
+                    </div>
+
+                    {% if form.purchase_price_per_bird.errors %}
+
+                    <div class="field-error">
+                        {{ form.purchase_price_per_bird.errors }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Notes -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.notes.id_for_label }}">
+                        Notes
+                        <span class="optional">
+                            Optional
+                        </span>
+                    </label>
+
+                    {{ form.notes }}
+
+                    {% if form.notes.errors %}
+
+                    <div class="field-error">
+                        {{ form.notes.errors }}
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Actions -->
+
+                <div class="form-actions">
+
+                    <a href="{% url 'dashboard' %}" class="btn btn-cancel">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="btn btn-submit">
+                        <span>＋</span>
+                        Create Batch
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- Information -->
+
+        <section class="info-card">
+
+            <div class="info-icon">
+                ℹ
+            </div>
+
+            <div>
+
+                <h3>
+                    Batch Management
+                </h3>
+
+                <p>
+                    A batch represents a group of poultry
+                    started together. After creating the batch,
+                    you can manage its daily records, production,
+                    expenses and other activities.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 SmartPoultry. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -7,6 +7,7 @@ from .views import (
     farm_detail_view,
     farm_edit_view,
     farm_delete_view,
+    batch_create_view,
 )
 
 
@@ -45,5 +46,11 @@ urlpatterns = [
         "farms/<int:farm_id>/delete/",
         farm_delete_view,
         name="farm_delete",
+    ),
+
+    path(
+        "batches/add/",
+        batch_create_view,
+        name="batch_create",
     ),
 ]

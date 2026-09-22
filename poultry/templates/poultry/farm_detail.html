@@ -93,6 +93,8 @@
             </section>
 
 
+            <!-- Farm Information -->
+
             <section class="dashboard-section">
 
                 <div class="section-heading">
@@ -176,6 +178,120 @@
                         </div>
 
                     </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Batches -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            FARM BATCHES
+                        </span>
+
+                        <h2>
+                            Batches
+                        </h2>
+
+                    </div>
+
+                    <a href="{% url 'batch_create' %}" class="primary-button">
+                        + Add Batch
+                    </a>
+
+                </div>
+
+
+                <div class="farm-grid">
+
+                    {% for batch in batches %}
+
+                    <div class="farm-card">
+
+                        <div class="farm-card-header">
+
+                            <h2>
+                                {{ batch.code }}
+                            </h2>
+
+                            <span>
+                                {{ batch.get_batch_type_display }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="farm-info">
+
+                            <p>
+                                <strong>Batch Code:</strong>
+                                {{ batch.code }}
+                            </p>
+
+                            <p>
+                                <strong>Batch Type:</strong>
+                                {{ batch.get_batch_type_display }}
+                            </p>
+
+                            <p>
+                                <strong>Start Date:</strong>
+                                {{ batch.start_date }}
+                            </p>
+
+                            <p>
+                                <strong>Bird Count:</strong>
+                                {{ batch.bird_count }}
+                            </p>
+
+                            <p>
+                                <strong>Status:</strong>
+
+                                {% if batch.is_active %}
+                                Active
+                                {% else %}
+                                Inactive
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="farm-card">
+
+                        <div class="farm-card-header">
+
+                            <h2>
+                                No Batches Yet
+                            </h2>
+
+                        </div>
+
+                        <div class="farm-info">
+
+                            <p>
+                                No batch has been added to this farm yet.
+                            </p>
+
+                            <p>
+                                Click <strong>+ Add Batch</strong> to create the first batch.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
 
                 </div>
 
