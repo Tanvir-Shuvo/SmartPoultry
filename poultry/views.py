@@ -477,3 +477,79 @@ def daily_record_delete_view(request, record_id):
             "daily_record": daily_record,
         },
     )
+
+
+
+@login_required
+def dashboard_view(request):
+    total_farms = Farm.objects.filter(
+        owner=request.user
+    ).count()
+
+    total_batches = Batch.objects.filter(
+        farm__owner=request.user
+    ).count()
+
+    active_batches = Batch.objects.filter(
+        farm__owner=request.user,
+        is_active=True,
+    ).count()
+
+    inactive_batches = Batch.objects.filter(
+        farm__owner=request.user,
+        is_active=False,
+    ).count()
+
+    active_bird_total = Batch.objects.filter(
+        farm__owner=request.user,
+        is_active=True,
+    ).aggregate(
+        total=Sum("initial_bird_count")
+    )["total"] or 0
+
+    total_feed = DailyRecord.objects.filter(
+        batch__farm__owner=request.user
+    ).aggregate(
+        total=Sum("feed_amount_kg")
+    )["total"] or 0
+
+    total_water = DailyRecord.objects.filter(
+        batch__farm__owner=request.user
+    ).aggregate(
+        total=Sum("water_liters")
+    )["total"] or 0
+
+    total_mortality = DailyRecord.objects.filter(
+        batch__farm__owner=request.user
+    ).aggregate(
+        total=Sum("dead_count")
+    )["total"] or 0
+
+    total_sick = DailyRecord.objects.filter(
+        batch__farm__owner=request.user
+    ).aggregate(
+        total=Sum("sick_count")
+    )["total"] or 0
+
+    current_birds = active_bird_total - total_mortality
+
+    farms = Farm.objects.filter(
+        owner=request.user
+    )
+
+    return render(
+        request,
+        "poultry/dashboard.html",
+        {
+            "total_farms": total_farms,
+            "total_batches": total_batches,
+            "active_batches": active_batches,
+            "inactive_batches": inactive_batches,
+            "current_birds": current_birds,
+            "total_feed": total_feed,
+            "total_water": total_water,
+            "total_mortality": total_mortality,
+            "total_sick": total_sick,
+            "farms": farms,
+        },
+    )
