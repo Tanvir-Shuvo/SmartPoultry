@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BatchForm, FarmForm
-from .models import Batch, Farm
+from .forms import BatchForm, DailyRecordForm, FarmForm
+from .models import Batch, DailyRecord, Farm
 
 
 @login_required
@@ -237,11 +237,19 @@ def batch_detail_view(request, batch_id):
         farm__owner=request.user,
     )
 
+    daily_records = DailyRecord.objects.filter(
+        batch=batch
+    ).order_by(
+        "-record_date",
+        "-id",
+    )
+
     return render(
         request,
         "poultry/batch_detail.html",
         {
             "batch": batch,
+            "daily_records": daily_records,
         },
     )
 
@@ -331,4 +339,141 @@ def batch_toggle_status_view(request, batch_id):
     return redirect(
         "batch_detail",
         batch_id=batch.id,
+    )
+
+
+@login_required
+def daily_record_list_view(request):
+    daily_records = DailyRecord.objects.filter(
+        batch__farm__owner=request.user
+    ).select_related(
+        "batch",
+        "batch__farm",
+    ).order_by(
+        "-record_date",
+        "-id",
+    )
+
+    return render(
+        request,
+        "poultry/daily_record_list.html",
+        {
+            "daily_records": daily_records,
+        },
+    )
+
+
+@login_required
+def daily_record_create_view(request, batch_id):
+    batch = get_object_or_404(
+        Batch,
+        id=batch_id,
+        farm__owner=request.user,
+    )
+
+    if request.method == "POST":
+        form = DailyRecordForm(request.POST)
+
+        if form.is_valid():
+            daily_record = form.save(commit=False)
+            daily_record.batch = batch
+            daily_record.save()
+
+            return redirect(
+                "batch_detail",
+                batch_id=batch.id,
+            )
+
+    else:
+        form = DailyRecordForm()
+
+    return render(
+        request,
+        "poultry/daily_record_form.html",
+        {
+            "form": form,
+            "batch": batch,
+        },
+    )
+
+
+@login_required
+def daily_record_detail_view(request, record_id):
+    daily_record = get_object_or_404(
+        DailyRecord,
+        id=record_id,
+        batch__farm__owner=request.user,
+    )
+
+    return render(
+        request,
+        "poultry/daily_record_detail.html",
+        {
+            "daily_record": daily_record,
+        },
+    )
+
+
+@login_required
+def daily_record_edit_view(request, record_id):
+    daily_record = get_object_or_404(
+        DailyRecord,
+        id=record_id,
+        batch__farm__owner=request.user,
+    )
+
+    if request.method == "POST":
+        form = DailyRecordForm(
+            request.POST,
+            instance=daily_record,
+        )
+
+        if form.is_valid():
+            form.save()
+
+            return redirect(
+                "daily_record_detail",
+                record_id=daily_record.id,
+            )
+
+    else:
+        form = DailyRecordForm(
+            instance=daily_record,
+        )
+
+    return render(
+        request,
+        "poultry/daily_record_form.html",
+        {
+            "form": form,
+            "batch": daily_record.batch,
+            "daily_record": daily_record,
+        },
+    )
+
+
+@login_required
+def daily_record_delete_view(request, record_id):
+    daily_record = get_object_or_404(
+        DailyRecord,
+        id=record_id,
+        batch__farm__owner=request.user,
+    )
+
+    if request.method == "POST":
+        batch_id = daily_record.batch.id
+
+        daily_record.delete()
+
+        return redirect(
+            "batch_detail",
+            batch_id=batch_id,
+        )
+
+    return render(
+        request,
+        "poultry/daily_record_confirm_delete.html",
+        {
+            "daily_record": daily_record,
+        },
     )

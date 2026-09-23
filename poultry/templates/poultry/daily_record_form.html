@@ -1,0 +1,259 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% if daily_record %}
+        Edit Daily Record
+        {% else %}
+        Add Daily Record
+        {% endif %}
+        | SmartPoultry
+    </title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/daily_record.css' %}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    {% if daily_record %}
+                    Edit Daily Record
+                    {% else %}
+                    Add Daily Record
+                    {% endif %}
+                </h1>
+
+                <p>
+                    Batch:
+                    <strong>{{ batch.code }}</strong>
+                </p>
+
+            </div>
+
+            <a href="{% url 'batch_detail' batch.id %}" class="secondary-button">
+                ← Back to Batch
+            </a>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <div class="form-card">
+
+                <h2>
+                    {% if daily_record %}
+                    Update Daily Operational Information
+                    {% else %}
+                    Daily Operational Information
+                    {% endif %}
+                </h2>
+
+                <p class="form-description">
+
+                    {% if daily_record %}
+                    Update the daily feed, water, bird health
+                    and medicine information for this batch.
+                    {% else %}
+                    Record the daily feed, water, bird health
+                    and medicine information for this batch.
+                    {% endif %}
+
+                </p>
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+
+                    {% if form.non_field_errors %}
+
+                    <div class="form-errors">
+                        {{ form.non_field_errors }}
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.record_date.id_for_label }}">
+                            Record Date
+                        </label>
+
+                        {{ form.record_date }}
+
+                        {% if form.record_date.errors %}
+                        <div class="field-error">
+                            {{ form.record_date.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.feed_amount_kg.id_for_label }}">
+                            Feed Amount (kg)
+                        </label>
+
+                        {{ form.feed_amount_kg }}
+
+                        {% if form.feed_amount_kg.errors %}
+                        <div class="field-error">
+                            {{ form.feed_amount_kg.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.water_liters.id_for_label }}">
+                            Water (liters)
+                        </label>
+
+                        {{ form.water_liters }}
+
+                        {% if form.water_liters.errors %}
+                        <div class="field-error">
+                            {{ form.water_liters.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.dead_count.id_for_label }}">
+                            Dead Birds
+                        </label>
+
+                        {{ form.dead_count }}
+
+                        {% if form.dead_count.errors %}
+                        <div class="field-error">
+                            {{ form.dead_count.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.sick_count.id_for_label }}">
+                            Sick Birds
+                        </label>
+
+                        {{ form.sick_count }}
+
+                        {% if form.sick_count.errors %}
+                        <div class="field-error">
+                            {{ form.sick_count.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group checkbox-group">
+
+                        <label>
+
+                            {{ form.medicine_used }}
+
+                            Medicine Used
+
+                        </label>
+
+                        {% if form.medicine_used.errors %}
+                        <div class="field-error">
+                            {{ form.medicine_used.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.medicine_quantity.id_for_label }}">
+                            Medicine Quantity
+                        </label>
+
+                        {{ form.medicine_quantity }}
+
+                        {% if form.medicine_quantity.errors %}
+                        <div class="field-error">
+                            {{ form.medicine_quantity.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.notes.id_for_label }}">
+                            Notes
+                        </label>
+
+                        {{ form.notes }}
+
+                        {% if form.notes.errors %}
+                        <div class="field-error">
+                            {{ form.notes.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a href="{% url 'batch_detail' batch.id %}" class="secondary-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="primary-button">
+
+                            {% if daily_record %}
+                            Update Daily Record
+                            {% else %}
+                            Save Daily Record
+                            {% endif %}
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

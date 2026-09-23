@@ -47,7 +47,7 @@
                     Batches
                 </a>
 
-                <a href="/records/">
+                <a href="{% url 'daily_record_list' %}">
                     Records
                 </a>
 
@@ -107,7 +107,7 @@
                         + Add Batch
                     </a>
 
-                    <a href="/records/add/" class="secondary-button">
+                    <a href="{% url 'daily_record_list' %}" class="secondary-button">
                         + Daily Record
                     </a>
 
@@ -238,7 +238,7 @@
 
                 <!-- Egg Production -->
 
-                <a href="/records/" class="summary-card">
+                <a href="{% url 'batch_list' %}" class="summary-card">
 
                     <div class="card-icon">
                         🥚
@@ -717,7 +717,7 @@
                     </a>
 
 
-                    <a href="/records/add/" class="secondary-button">
+                    <a href="{% url 'daily_record_list' %}" class="secondary-button">
                         + Daily Record
                     </a>
 

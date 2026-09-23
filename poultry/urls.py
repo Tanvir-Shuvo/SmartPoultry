@@ -8,6 +8,11 @@ from .views import (
     batch_list_view,
     batch_toggle_status_view,
     dashboard_view,
+    daily_record_create_view,
+    daily_record_delete_view,
+    daily_record_detail_view,
+    daily_record_edit_view,
+    daily_record_list_view,
     farm_create_view,
     farm_delete_view,
     farm_detail_view,
@@ -87,5 +92,35 @@ urlpatterns = [
         "batches/<int:batch_id>/status/",
         batch_toggle_status_view,
         name="batch_toggle_status",
+    ),
+
+    path(
+        "records/",
+        daily_record_list_view,
+        name="daily_record_list",
+    ),
+
+    path(
+        "records/<int:record_id>/",
+        daily_record_detail_view,
+        name="daily_record_detail",
+    ),
+
+    path(
+        "records/<int:record_id>/edit/",
+        daily_record_edit_view,
+        name="daily_record_edit",
+    ),
+
+    path(
+        "records/<int:record_id>/delete/",
+        daily_record_delete_view,
+        name="daily_record_delete",
+    ),
+
+    path(
+        "batches/<int:batch_id>/daily-records/add/",
+        daily_record_create_view,
+        name="daily_record_create",
     ),
 ]

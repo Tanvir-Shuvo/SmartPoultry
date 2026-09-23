@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Record | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/daily_record.css' %}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>Daily Record</h1>
+
+                <p>
+                    Batch:
+                    <strong>
+                        {{ daily_record.batch.code }}
+                    </strong>
+                </p>
+
+            </div>
+
+            <div class="header-actions">
+
+                <a href="{% url 'daily_record_list' %}" class="secondary-button">
+                    ← All Records
+                </a>
+
+                <a href="{% url 'batch_detail' daily_record.batch.id %}" class="secondary-button">
+                    View Batch
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <div class="form-card">
+
+                <h2>Daily Operational Information</h2>
+
+
+                <div class="form-group">
+
+                    <label>Farm</label>
+
+                    <p>
+                        {{ daily_record.batch.farm.name }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Batch</label>
+
+                    <p>
+                        {{ daily_record.batch.code }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Record Date</label>
+
+                    <p>
+                        {{ daily_record.record_date }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Feed Amount</label>
+
+                    <p>
+                        {{ daily_record.feed_amount_kg }} kg
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Water</label>
+
+                    <p>
+                        {{ daily_record.water_liters }} L
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Dead Birds</label>
+
+                    <p>
+                        {{ daily_record.dead_count }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Sick Birds</label>
+
+                    <p>
+                        {{ daily_record.sick_count }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Medicine Used</label>
+
+                    <p>
+
+                        {% if daily_record.medicine_used %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Medicine Quantity</label>
+
+                    <p>
+                        {{ daily_record.medicine_quantity }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Notes</label>
+
+                    <p>
+                        {% if daily_record.notes %}
+                        {{ daily_record.notes }}
+                        {% else %}
+                        No notes added.
+                        {% endif %}
+                    </p>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a href="{% url 'daily_record_edit' daily_record.id %}" class="primary-button">
+                        Edit Record
+                    </a>
+
+                    <a href="{% url 'daily_record_delete' daily_record.id %}" class="secondary-button">
+                        Delete Record
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

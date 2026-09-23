@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Daily Record | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/daily_record.css' %}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>Delete Daily Record</h1>
+
+                <p>
+                    Confirm permanent deletion of this record.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <div class="form-card">
+
+                <h2>Are you sure?</h2>
+
+                <p class="form-description">
+
+                    You are about to permanently delete the
+                    following daily record:
+
+                </p>
+
+
+                <div class="form-group">
+
+                    <label>Farm</label>
+
+                    <p>
+                        {{ daily_record.batch.farm.name }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Batch</label>
+
+                    <p>
+                        {{ daily_record.batch.code }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Record Date</label>
+
+                    <p>
+                        {{ daily_record.record_date }}
+                    </p>
+
+                </div>
+
+
+                <p class="form-description">
+
+                    This action cannot be undone.
+
+                </p>
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="form-actions">
+
+                        <a href="{% url 'daily_record_detail' daily_record.id %}" class="secondary-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="primary-button">
+                            Delete Daily Record
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

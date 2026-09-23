@@ -55,6 +55,8 @@
 
         <div class="container">
 
+            <!-- Batch Header -->
+
             <section class="dashboard-hero">
 
                 <div>
@@ -83,6 +85,11 @@
 
                     <a href="{% url 'batch_edit' batch.id %}" class="primary-button">
                         Edit Batch
+                    </a>
+
+
+                    <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
+                        + Add Daily Record
                     </a>
 
 
@@ -115,6 +122,8 @@
 
             </section>
 
+
+            <!-- Batch Information -->
 
             <section class="dashboard-section">
 
@@ -237,6 +246,8 @@
             </section>
 
 
+            <!-- Purchase Details -->
+
             <section class="dashboard-section">
 
                 <div class="section-heading">
@@ -303,6 +314,136 @@
 
             </section>
 
+
+            <!-- Daily Records -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            DAILY RECORDS
+                        </span>
+
+                        <h2>
+                            Daily Activity
+                        </h2>
+
+                    </div>
+
+
+                    <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
+                        + Add Record
+                    </a>
+
+                </div>
+
+
+                {% if daily_records %}
+
+                <div class="activity-card">
+
+                    {% for record in daily_records %}
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            📋
+                        </span>
+
+
+                        <div class="activity-content">
+
+                            <h3>
+                                {{ record.record_date }}
+                            </h3>
+
+                            <p>
+                                Feed: {{ record.feed_amount_kg }} kg
+                                &nbsp; | &nbsp;
+                                Water: {{ record.water_liters }} L
+                                &nbsp; | &nbsp;
+                                Dead: {{ record.dead_count }}
+                                &nbsp; | &nbsp;
+                                Sick: {{ record.sick_count }}
+                            </p>
+
+
+                            <p>
+
+                                {% if record.medicine_used %}
+                                💊 Medicine used
+                                {% else %}
+                                No medicine
+                                {% endif %}
+
+                            </p>
+
+
+                            <div class="quick-actions">
+
+                                <a href="{% url 'daily_record_detail' record.id %}" class="secondary-button">
+                                    View
+                                </a>
+
+                                <a href="{% url 'daily_record_edit' record.id %}" class="primary-button">
+                                    Edit
+                                </a>
+
+                                <a href="{% url 'daily_record_delete' record.id %}" class="secondary-button">
+                                    Delete
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <div class="activity-card">
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            📋
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                No Daily Records Yet
+                            </h3>
+
+                            <p>
+                                Start tracking this batch's daily activity by adding the first record.
+                            </p>
+
+                            <br>
+
+                            <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
+                                + Add First Daily Record
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </section>
+
+
+            <!-- Notes -->
 
             {% if batch.notes %}
 

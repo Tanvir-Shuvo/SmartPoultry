@@ -1,0 +1,222 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Records | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/daily_record_list.css' %}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Header -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>Daily Records</h1>
+
+                <p>
+                    View and manage daily operational records
+                    of your poultry batches.
+                </p>
+
+            </div>
+
+            <div class="header-actions">
+
+                <a href="{% url 'dashboard' %}" class="secondary-button">
+                    ← Dashboard
+                </a>
+
+                <a href="{% url 'batch_list' %}" class="primary-button">
+                    + Add Daily Record
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- Main Content -->
+
+        <main class="dashboard-content">
+
+            {% if daily_records %}
+
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>All Daily Records</h2>
+
+                        <p>
+                            Your latest poultry operation records.
+                        </p>
+
+                    </div>
+
+                    <span class="section-count">
+                        {{ daily_records|length }}
+                        record{{ daily_records|length|pluralize }}
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+                                <th>Farm</th>
+                                <th>Batch</th>
+                                <th>Feed (kg)</th>
+                                <th>Water (L)</th>
+                                <th>Dead</th>
+                                <th>Sick</th>
+                                <th>Medicine</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for record in daily_records %}
+
+                            <tr>
+
+                                <td>
+                                    {{ record.record_date }}
+                                </td>
+
+                                <td>
+                                    {{ record.batch.farm.name }}
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        {{ record.batch.code }}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    {{ record.feed_amount_kg }}
+                                </td>
+
+                                <td>
+                                    {{ record.water_liters }}
+                                </td>
+
+                                <td>
+                                    {{ record.dead_count }}
+                                </td>
+
+                                <td>
+                                    {{ record.sick_count }}
+                                </td>
+
+                                <td>
+
+                                    {% if record.medicine_used %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    <a href="{% url 'daily_record_detail' record.id %}" class="table-action">
+                                        View
+                                    </a>
+
+                                    <a href="{% url 'daily_record_edit' record.id %}" class="table-action">
+                                        Edit
+                                    </a>
+
+                                    <a href="{% url 'daily_record_delete' record.id %}" class="table-action">
+                                        Delete
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            {% else %}
+
+            <!-- Empty State -->
+
+            <section class="empty-state">
+
+                <div class="empty-state-icon">
+                    📋
+                </div>
+
+                <h2>No Daily Records Yet</h2>
+
+                <p>
+                    You haven't added any daily operational
+                    records yet.
+                </p>
+
+                <p>
+                    Select a batch and start recording
+                    daily poultry activities.
+                </p>
+
+                <a href="{% url 'batch_list' %}" class="primary-button">
+                    Go to Batches
+                </a>
+
+            </section>
+
+            {% endif %}
+
+        </main>
+
+
+        <!-- Footer -->
+
+        <footer class="dashboard-footer">
+
+            <p>
+                SmartPoultry • Poultry Farm Management System
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
