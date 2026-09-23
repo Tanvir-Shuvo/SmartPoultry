@@ -1,0 +1,367 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ batch.code }} | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+</head>
+
+<body>
+
+    <header class="dashboard-navbar">
+        <div class="container nav-container">
+
+            <a href="{% url 'home' %}" class="brand">
+                <span class="brand-icon">🐔</span>
+                <span>SmartPoultry</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}">
+                    Farms
+                </a>
+
+                <a href="{% url 'batch_list' %}" class="active">
+                    Batches
+                </a>
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'logout' %}" class="logout-link">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="dashboard-main">
+
+        <div class="container">
+
+            <section class="dashboard-hero">
+
+                <div>
+
+                    <span class="hero-badge">
+                        🐣 Batch Details
+                    </span>
+
+                    <h1>
+                        {{ batch.code }}
+                    </h1>
+
+                    <p>
+                        View information about this poultry batch.
+                    </p>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <a href="{% url 'batch_list' %}" class="secondary-button">
+                        ← Back to Batches
+                    </a>
+
+
+                    <a href="{% url 'batch_edit' batch.id %}" class="primary-button">
+                        Edit Batch
+                    </a>
+
+
+                    <form method="post" action="{% url 'batch_toggle_status' batch.id %}">
+
+                        {% csrf_token %}
+
+                        {% if batch.is_active %}
+
+                        <button type="submit" class="secondary-button">
+                            Mark as Inactive
+                        </button>
+
+                        {% else %}
+
+                        <button type="submit" class="primary-button">
+                            ▶ Mark as Active
+                        </button>
+
+                        {% endif %}
+
+                    </form>
+
+
+                    <a href="{% url 'batch_delete' batch.id %}" class="secondary-button">
+                        Delete Batch
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            BATCH INFORMATION
+                        </span>
+
+                        <h2>
+                            {{ batch.code }}
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+                            🏡
+                        </div>
+
+                        <h3>
+                            Farm
+                        </h3>
+
+                        <strong>
+                            {{ batch.farm.name }}
+                        </strong>
+
+                        <p>
+                            Parent farm of this batch
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+                            🐔
+                        </div>
+
+                        <h3>
+                            Poultry Type
+                        </h3>
+
+                        <strong>
+                            {{ batch.get_poultry_type_display }}
+                        </strong>
+
+                        <p>
+                            Batch category
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+                            🐣
+                        </div>
+
+                        <h3>
+                            Initial Birds
+                        </h3>
+
+                        <strong>
+                            {{ batch.initial_bird_count }}
+                        </strong>
+
+                        <p>
+                            Birds at batch start
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+
+                            {% if batch.is_active %}
+                            ✅
+                            {% else %}
+                            ⏸️
+                            {% endif %}
+
+                        </div>
+
+                        <h3>
+                            Status
+                        </h3>
+
+                        <strong>
+
+                            {% if batch.is_active %}
+                            Active
+                            {% else %}
+                            Inactive
+                            {% endif %}
+
+                        </strong>
+
+                        <p>
+                            Current batch status
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            PURCHASE DETAILS
+                        </span>
+
+                        <h2>
+                            Batch Records
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-grid">
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+                            📅
+                        </div>
+
+                        <h3>
+                            Start Date
+                        </h3>
+
+                        <strong>
+                            {{ batch.start_date }}
+                        </strong>
+
+                        <p>
+                            Batch began on this date
+                        </p>
+
+                    </article>
+
+
+                    <article class="summary-card">
+
+                        <div class="card-icon">
+                            💰
+                        </div>
+
+                        <h3>
+                            Price per Bird
+                        </h3>
+
+                        <strong>
+                            ৳ {{ batch.purchase_price_per_bird }}
+                        </strong>
+
+                        <p>
+                            Initial purchase price
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            {% if batch.notes %}
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            NOTES
+                        </span>
+
+                        <h2>
+                            Additional Notes
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+                    <div class="activity-item">
+
+                        <span class="activity-icon">
+                            📝
+                        </span>
+
+                        <div>
+
+                            <p>
+                                {{ batch.notes }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 SmartPoultry. Modern Poultry Farm Management.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

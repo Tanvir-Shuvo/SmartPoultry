@@ -107,9 +107,6 @@ class Batch(models.Model):
 # ============================================================
 # DAILY RECORD MODEL
 # ============================================================
-# Stores the daily status and activities of a poultry batch.
-# One Batch can have many DailyRecords.
-# ============================================================
 
 class DailyRecord(models.Model):
 
@@ -162,9 +159,6 @@ class DailyRecord(models.Model):
 # ============================================================
 # EGG PRODUCTION MODEL
 # ============================================================
-# Stores daily egg production information for a poultry batch.
-# One Batch can have many EggProduction records.
-# ============================================================
 
 class EggProduction(models.Model):
 
@@ -196,12 +190,6 @@ class EggProduction(models.Model):
 
 # ============================================================
 # EXPENSE MODEL
-# ============================================================
-# Stores expenses related to a Farm or a specific Batch.
-#
-# Expense can be:
-# 1. FARM  → General farm expense
-# 2. BATCH → Expense directly related to a specific batch
 # ============================================================
 
 class Expense(models.Model):
@@ -247,12 +235,6 @@ class Expense(models.Model):
 
 # ============================================================
 # SALE MODEL
-# ============================================================
-# Stores sales made from a poultry farm.
-#
-# A Sale can represent:
-# 1. Poultry/Bird sale
-# 2. Egg sale
 # ============================================================
 
 class Sale(models.Model):

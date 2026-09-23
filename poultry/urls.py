@@ -1,13 +1,18 @@
 from django.urls import path
 
 from .views import (
+    batch_create_view,
+    batch_delete_view,
+    batch_detail_view,
+    batch_edit_view,
+    batch_list_view,
+    batch_toggle_status_view,
     dashboard_view,
     farm_create_view,
-    farm_list_view,
+    farm_delete_view,
     farm_detail_view,
     farm_edit_view,
-    farm_delete_view,
-    batch_create_view,
+    farm_list_view,
 )
 
 
@@ -52,5 +57,35 @@ urlpatterns = [
         "batches/add/",
         batch_create_view,
         name="batch_create",
+    ),
+
+    path(
+        "batches/",
+        batch_list_view,
+        name="batch_list",
+    ),
+
+    path(
+        "batches/<int:batch_id>/",
+        batch_detail_view,
+        name="batch_detail",
+    ),
+
+    path(
+        "batches/<int:batch_id>/edit/",
+        batch_edit_view,
+        name="batch_edit",
+    ),
+
+    path(
+        "batches/<int:batch_id>/delete/",
+        batch_delete_view,
+        name="batch_delete",
+    ),
+
+    path(
+        "batches/<int:batch_id>/status/",
+        batch_toggle_status_view,
+        name="batch_toggle_status",
     ),
 ]
