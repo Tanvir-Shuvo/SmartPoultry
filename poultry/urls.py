@@ -13,6 +13,10 @@ from .views import (
     daily_record_detail_view,
     daily_record_edit_view,
     daily_record_list_view,
+    egg_production_create_view,
+    egg_production_delete_view,
+    egg_production_edit_view,
+    egg_production_list_view,
     farm_create_view,
     farm_delete_view,
     farm_detail_view,
@@ -22,11 +26,21 @@ from .views import (
 
 
 urlpatterns = [
+
+    # =====================================================
+    # Dashboard
+    # =====================================================
+
     path(
         "dashboard/",
         dashboard_view,
         name="dashboard",
     ),
+
+
+    # =====================================================
+    # Farm
+    # =====================================================
 
     path(
         "farms/add/",
@@ -57,6 +71,11 @@ urlpatterns = [
         farm_delete_view,
         name="farm_delete",
     ),
+
+
+    # =====================================================
+    # Batch
+    # =====================================================
 
     path(
         "batches/add/",
@@ -94,6 +113,11 @@ urlpatterns = [
         name="batch_toggle_status",
     ),
 
+
+    # =====================================================
+    # Daily Records
+    # =====================================================
+
     path(
         "records/",
         daily_record_list_view,
@@ -122,5 +146,34 @@ urlpatterns = [
         "batches/<int:batch_id>/daily-records/add/",
         daily_record_create_view,
         name="daily_record_create",
+    ),
+
+
+    # =====================================================
+    # Egg Production
+    # =====================================================
+
+    path(
+        "egg-productions/",
+        egg_production_list_view,
+        name="egg_production_list",
+    ),
+
+    path(
+        "batches/<int:batch_id>/egg-production/add/",
+        egg_production_create_view,
+        name="egg_production_create",
+    ),
+
+    path(
+        "egg-productions/<int:production_id>/edit/",
+        egg_production_edit_view,
+        name="egg_production_edit",
+    ),
+
+    path(
+        "egg-productions/<int:production_id>/delete/",
+        egg_production_delete_view,
+        name="egg_production_delete",
     ),
 ]

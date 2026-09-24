@@ -1,0 +1,165 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Add Egg Production | SmartPoultry
+    </title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/egg_production.css' %}">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Add Egg Production
+                </h1>
+
+                <p>
+                    Batch:
+                    <strong>{{ batch.code }}</strong>
+                </p>
+
+            </div>
+
+            <a href="{% url 'batch_detail' batch.id %}" class="secondary-button">
+                ← Back to Batch
+            </a>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <div class="form-card">
+
+                <h2>
+                    Egg Production Information
+                </h2>
+
+                <p class="form-description">
+
+                    Record the daily egg production and damaged
+                    egg information for this batch.
+
+                </p>
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+
+                    {% if form.non_field_errors %}
+
+                    <div class="form-errors">
+                        {{ form.non_field_errors }}
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.production_date.id_for_label }}">
+                            Production Date
+                        </label>
+
+                        {{ form.production_date }}
+
+                        {% if form.production_date.errors %}
+                        <div class="field-error">
+                            {{ form.production_date.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.egg_count.id_for_label }}">
+                            Total Eggs
+                        </label>
+
+                        {{ form.egg_count }}
+
+                        {% if form.egg_count.errors %}
+                        <div class="field-error">
+                            {{ form.egg_count.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.damaged_egg_count.id_for_label }}">
+                            Damaged Eggs
+                        </label>
+
+                        {{ form.damaged_egg_count }}
+
+                        {% if form.damaged_egg_count.errors %}
+                        <div class="field-error">
+                            {{ form.damaged_egg_count.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.notes.id_for_label }}">
+                            Notes
+                        </label>
+
+                        {{ form.notes }}
+
+                        {% if form.notes.errors %}
+                        <div class="field-error">
+                            {{ form.notes.errors }}
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a href="{% url 'batch_detail' batch.id %}" class="secondary-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="primary-button">
+                            Save Egg Production
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

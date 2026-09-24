@@ -10,6 +10,7 @@ from django.db import models
 # ============================================================
 
 class Farm(models.Model):
+
     FARM_TYPES = [
         ("BROILER", "Broiler"),
         ("LAYER", "Layer"),
@@ -23,9 +24,13 @@ class Farm(models.Model):
         related_name="farms",
     )
 
-    name = models.CharField(max_length=200)
+    name = models.CharField(
+        max_length=200
+    )
 
-    location = models.CharField(max_length=255)
+    location = models.CharField(
+        max_length=255
+    )
 
     farm_type = models.CharField(
         max_length=10,
@@ -36,7 +41,9 @@ class Farm(models.Model):
 
     start_date = models.DateField()
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     class Meta:
         constraints = [
@@ -59,6 +66,7 @@ class Farm(models.Model):
 # ============================================================
 
 class Batch(models.Model):
+
     POULTRY_TYPES = [
         ("BROILER", "Broiler"),
         ("LAYER", "Layer"),
@@ -72,7 +80,9 @@ class Batch(models.Model):
         related_name="batches",
     )
 
-    code = models.CharField(max_length=50)
+    code = models.CharField(
+        max_length=50
+    )
 
     poultry_type = models.CharField(
         max_length=10,
@@ -88,9 +98,13 @@ class Batch(models.Model):
         decimal_places=2,
     )
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(
+        default=True
+    )
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(
+        blank=True
+    )
 
     class Meta:
         constraints = [
@@ -130,11 +144,17 @@ class DailyRecord(models.Model):
         default=0,
     )
 
-    dead_count = models.PositiveIntegerField(default=0)
+    dead_count = models.PositiveIntegerField(
+        default=0
+    )
 
-    sick_count = models.PositiveIntegerField(default=0)
+    sick_count = models.PositiveIntegerField(
+        default=0
+    )
 
-    medicine_used = models.BooleanField(default=False)
+    medicine_used = models.BooleanField(
+        default=False
+    )
 
     medicine_quantity = models.DecimalField(
         max_digits=10,
@@ -142,7 +162,9 @@ class DailyRecord(models.Model):
         default=0,
     )
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(
+        blank=True
+    )
 
     class Meta:
         constraints = [
@@ -172,9 +194,13 @@ class EggProduction(models.Model):
 
     egg_count = models.PositiveIntegerField()
 
-    damaged_egg_count = models.PositiveIntegerField(default=0)
+    damaged_egg_count = models.PositiveIntegerField(
+        default=0
+    )
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(
+        blank=True
+    )
 
     class Meta:
         constraints = [
@@ -183,6 +209,10 @@ class EggProduction(models.Model):
                 name="unique_egg_production_per_batch_date",
             ),
         ]
+
+    @property
+    def good_egg_count(self):
+        return self.egg_count - self.damaged_egg_count
 
     def __str__(self):
         return f"{self.batch.code} - {self.production_date}"
@@ -218,7 +248,9 @@ class Expense(models.Model):
         choices=EXPENSE_TYPES,
     )
 
-    category = models.CharField(max_length=100)
+    category = models.CharField(
+        max_length=100
+    )
 
     amount = models.DecimalField(
         max_digits=12,
@@ -227,7 +259,9 @@ class Expense(models.Model):
 
     expense_date = models.DateField()
 
-    description = models.TextField(blank=True)
+    description = models.TextField(
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.category} - {self.amount}"
@@ -285,7 +319,9 @@ class Sale(models.Model):
         blank=True,
     )
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.sale_type} - {self.quantity}"

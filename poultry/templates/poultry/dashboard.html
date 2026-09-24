@@ -1,6 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -49,6 +50,10 @@
 
                 <a href="{% url 'daily_record_list' %}">
                     Records
+                </a>
+
+                <a href="{% url 'egg_production_list' %}">
+                    Egg Production
                 </a>
 
                 <a href="/">
@@ -238,7 +243,7 @@
 
                 <!-- Egg Production -->
 
-                <a href="{% url 'batch_list' %}" class="summary-card">
+                <a href="{% url 'egg_production_list' %}" class="summary-card">
 
                     <div class="card-icon">
                         🥚
@@ -249,7 +254,7 @@
                     </h3>
 
                     <strong>
-                        0
+                        {{ total_egg_production }}
                     </strong>
 
                     <p>
@@ -477,7 +482,7 @@
 
             <!-- Farms -->
 
-            <section class="dashboard-section">
+            <section class="dashboard-section farms-section">
 
                 <div class="section-heading">
 
@@ -494,108 +499,144 @@
                     </div>
 
 
-                    <a href="{% url 'farm_list' %}" class="section-link">
-                        View All →
-                    </a>
+                    <div class="farm-carousel-actions">
 
-                </div>
+                        <button type="button" class="farm-carousel-button" id="farmPrevButton"
+                            aria-label="Previous farms">
+                            ←
+                        </button>
 
+                        <button type="button" class="farm-carousel-button" id="farmNextButton" aria-label="Next farms">
+                            →
+                        </button>
 
-                <div class="farm-grid">
-
-
-                    {% for farm in farms %}
-
-                    <div class="farm-card">
-
-                        <div class="farm-card-header">
-
-                            <h2>
-                                {{ farm.name }}
-                            </h2>
-
-                            <span>
-                                {{ farm.get_farm_type_display }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="farm-info">
-
-                            <p>
-
-                                <strong>
-                                    Location:
-                                </strong>
-
-                                {{ farm.location }}
-
-                            </p>
-
-
-                            <p>
-
-                                <strong>
-                                    Capacity:
-                                </strong>
-
-                                {{ farm.capacity }} birds
-
-                            </p>
-
-
-                            <p>
-
-                                <strong>
-                                    Batches:
-                                </strong>
-
-                                {{ farm.batches.count }}
-
-                            </p>
-
-                        </div>
-
-
-                        <div class="farm-card-footer">
-
-                            <a href="{% url 'farm_detail' farm.id %}" class="primary-button">
-                                View Farm
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    {% empty %}
-
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            🏡
-                        </div>
-
-                        <h3>
-                            No Farms Yet
-                        </h3>
-
-                        <p>
-                            Add your first poultry farm to start
-                            managing your operations.
-                        </p>
-
-                        <a href="{% url 'farm_create' %}" class="primary-button">
-                            + Add Your First Farm
+                        <a href="{% url 'farm_list' %}" class="section-link">
+                            View All →
                         </a>
 
                     </div>
 
+                </div>
 
-                    {% endfor %}
 
+                <div class="farm-carousel">
+
+                    <div class="farm-carousel-track" id="farmCarouselTrack">
+
+
+                        {% for farm in farms %}
+
+                        <div class="farm-carousel-slide">
+
+
+                            <div class="farm-card">
+
+                                <div class="farm-card-header">
+
+                                    <div>
+
+                                        <span class="farm-card-icon">
+                                            🏡
+                                        </span>
+
+                                        <h2>
+                                            {{ farm.name }}
+                                        </h2>
+
+                                    </div>
+
+                                    <span class="farm-type-badge">
+                                        {{ farm.get_farm_type_display }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="farm-info">
+
+                                    <p>
+
+                                        <strong>
+                                            Location
+                                        </strong>
+
+                                        <span>
+                                            {{ farm.location }}
+                                        </span>
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Capacity
+                                        </strong>
+
+                                        <span>
+                                            {{ farm.capacity }} birds
+                                        </span>
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Batches
+                                        </strong>
+
+                                        <span>
+                                            {{ farm.batches.count }}
+                                        </span>
+
+                                    </p>
+
+                                </div>
+
+
+                                <div class="farm-card-footer">
+
+                                    <a href="{% url 'farm_detail' farm.id %}" class="primary-button">
+                                        View Farm →
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        {% empty %}
+
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                🏡
+                            </div>
+
+                            <h3>
+                                No Farms Yet
+                            </h3>
+
+                            <p>
+                                Add your first poultry farm to start
+                                managing your operations.
+                            </p>
+
+                            <a href="{% url 'farm_create' %}" class="primary-button">
+                                + Add Your First Farm
+                            </a>
+
+                        </div>
+
+
+                        {% endfor %}
+
+
+                    </div>
 
                 </div>
 
@@ -626,6 +667,8 @@
                 <div class="activity-card">
 
 
+                    <!-- Egg Production -->
+
                     <div class="activity-item">
 
                         <span class="activity-icon">
@@ -638,14 +681,49 @@
                                 Egg Production
                             </h3>
 
+
+                            {% for production in recent_egg_productions %}
+
+                            <p>
+
+                                <strong>
+                                    {{ production.batch.code }}
+                                </strong>
+
+                                — {{ production.production_date }}
+
+                                · Total Eggs:
+                                {{ production.egg_count }}
+
+                                · Damaged:
+                                {{ production.damaged_egg_count }}
+
+                                · Good:
+                                {{ production.good_egg_count }}
+
+                                —
+
+                                <a href="{% url 'batch_detail' production.batch.id %}">
+                                    View Details
+                                </a>
+
+                            </p>
+
+
+                            {% empty %}
+
                             <p>
                                 No recent activity
                             </p>
+
+                            {% endfor %}
 
                         </div>
 
                     </div>
 
+
+                    <!-- Daily Records -->
 
                     <div class="activity-item">
 
@@ -659,14 +737,52 @@
                                 Daily Records
                             </h3>
 
+
+                            {% for record in recent_daily_records %}
+
+                            <p>
+
+                                <strong>
+                                    {{ record.batch.code }}
+                                </strong>
+
+                                — {{ record.record_date }}
+
+                                · Feed:
+                                {{ record.feed_amount_kg }} kg
+
+                                · Water:
+                                {{ record.water_liters }} L
+
+                                · Dead:
+                                {{ record.dead_count }}
+
+                                · Sick:
+                                {{ record.sick_count }}
+
+                                —
+
+                                <a href="{% url 'daily_record_detail' record.id %}">
+                                    View Details
+                                </a>
+
+                            </p>
+
+
+                            {% empty %}
+
                             <p>
                                 No recent activity
                             </p>
+
+                            {% endfor %}
 
                         </div>
 
                     </div>
 
+
+                    <!-- Expenses -->
 
                     <div class="activity-item">
 
@@ -751,6 +867,10 @@
 
     </footer>
 
+
+    <!-- Dashboard JavaScript -->
+
+    <script src="{% static 'poultry/js/dashboard.js' %}"></script>
 
 </body>
 

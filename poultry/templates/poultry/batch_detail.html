@@ -4,6 +4,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,17 +12,35 @@
     <title>{{ batch.code }} | SmartPoultry</title>
 
     <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+
+    <link rel="stylesheet" href="{% static 'poultry/css/batch_detail.css' %}">
+
 </head>
+
 
 <body>
 
+
+    <!-- =====================================================
+         Navigation
+         ===================================================== -->
+
     <header class="dashboard-navbar">
+
         <div class="container nav-container">
 
             <a href="{% url 'home' %}" class="brand">
-                <span class="brand-icon">🐔</span>
-                <span>SmartPoultry</span>
+
+                <span class="brand-icon">
+                    🐔
+                </span>
+
+                <span>
+                    SmartPoultry
+                </span>
+
             </a>
+
 
             <nav class="nav-links">
 
@@ -48,14 +67,22 @@
             </nav>
 
         </div>
+
     </header>
 
+
+    <!-- =====================================================
+         Main Content
+         ===================================================== -->
 
     <main class="dashboard-main">
 
         <div class="container">
 
-            <!-- Batch Header -->
+
+            <!-- =================================================
+                 Batch Header
+                 ================================================= -->
 
             <section class="dashboard-hero">
 
@@ -78,6 +105,7 @@
 
                 <div class="quick-actions">
 
+
                     <a href="{% url 'batch_list' %}" class="secondary-button">
                         ← Back to Batches
                     </a>
@@ -90,6 +118,11 @@
 
                     <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
                         + Add Daily Record
+                    </a>
+
+
+                    <a href="{% url 'egg_production_create' batch.id %}" class="primary-button">
+                        🥚 Add Egg Production
                     </a>
 
 
@@ -118,112 +151,95 @@
                         Delete Batch
                     </a>
 
+
                 </div>
 
             </section>
 
 
-            <!-- Batch Information -->
+            <!-- =================================================
+                 Batch Information
+                 ================================================= -->
 
-            <section class="dashboard-section">
+            <section class="section-card">
 
-                <div class="section-heading">
+                <div class="section-header">
 
                     <div>
 
-                        <span class="section-label">
-                            BATCH INFORMATION
-                        </span>
-
                         <h2>
-                            {{ batch.code }}
+                            Batch Information
                         </h2>
+
+                        <p>
+                            Basic information about this poultry batch.
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <div class="summary-grid">
+                <div class="info-grid">
 
-                    <article class="summary-card">
 
-                        <div class="card-icon">
-                            🏡
-                        </div>
+                    <div class="info-item">
 
-                        <h3>
+                        <span class="info-label">
                             Farm
-                        </h3>
+                        </span>
 
                         <strong>
                             {{ batch.farm.name }}
                         </strong>
 
-                        <p>
-                            Parent farm of this batch
-                        </p>
-
-                    </article>
+                    </div>
 
 
-                    <article class="summary-card">
+                    <div class="info-item">
 
-                        <div class="card-icon">
-                            🐔
-                        </div>
-
-                        <h3>
+                        <span class="info-label">
                             Poultry Type
-                        </h3>
+                        </span>
 
                         <strong>
                             {{ batch.get_poultry_type_display }}
                         </strong>
 
-                        <p>
-                            Batch category
-                        </p>
-
-                    </article>
+                    </div>
 
 
-                    <article class="summary-card">
+                    <div class="info-item">
 
-                        <div class="card-icon">
-                            🐣
-                        </div>
+                        <span class="info-label">
+                            Start Date
+                        </span>
 
-                        <h3>
+                        <strong>
+                            {{ batch.start_date }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
                             Initial Birds
-                        </h3>
+                        </span>
 
                         <strong>
                             {{ batch.initial_bird_count }}
                         </strong>
 
-                        <p>
-                            Birds at batch start
-                        </p>
-
-                    </article>
+                    </div>
 
 
-                    <article class="summary-card">
+                    <div class="info-item">
 
-                        <div class="card-icon">
-
-                            {% if batch.is_active %}
-                            ✅
-                            {% else %}
-                            ⏸️
-                            {% endif %}
-
-                        </div>
-
-                        <h3>
+                        <span class="info-label">
                             Status
-                        </h3>
+                        </span>
 
                         <strong>
 
@@ -235,101 +251,89 @@
 
                         </strong>
 
-                        <p>
-                            Current batch status
-                        </p>
+                    </div>
 
-                    </article>
 
                 </div>
 
             </section>
 
 
-            <!-- Purchase Details -->
+            <!-- =================================================
+                 Purchase Details
+                 ================================================= -->
 
-            <section class="dashboard-section">
+            <section class="section-card">
 
-                <div class="section-heading">
+                <div class="section-header">
 
                     <div>
 
-                        <span class="section-label">
-                            PURCHASE DETAILS
-                        </span>
-
                         <h2>
-                            Batch Records
+                            Purchase Details
                         </h2>
+
+                        <p>
+                            Initial purchase information for this batch.
+                        </p>
 
                     </div>
 
                 </div>
 
 
-                <div class="summary-grid">
+                <div class="info-grid">
 
-                    <article class="summary-card">
 
-                        <div class="card-icon">
-                            📅
-                        </div>
+                    <div class="info-item">
 
-                        <h3>
-                            Start Date
-                        </h3>
+                        <span class="info-label">
+                            Birds Purchased
+                        </span>
 
                         <strong>
-                            {{ batch.start_date }}
+                            {{ batch.initial_bird_count }}
                         </strong>
 
-                        <p>
-                            Batch began on this date
-                        </p>
-
-                    </article>
+                    </div>
 
 
-                    <article class="summary-card">
+                    <div class="info-item">
 
-                        <div class="card-icon">
-                            💰
-                        </div>
-
-                        <h3>
-                            Price per Bird
-                        </h3>
+                        <span class="info-label">
+                            Purchase Price Per Bird
+                        </span>
 
                         <strong>
-                            ৳ {{ batch.purchase_price_per_bird }}
+                            {{ batch.purchase_price_per_bird }}
                         </strong>
 
-                        <p>
-                            Initial purchase price
-                        </p>
+                    </div>
 
-                    </article>
 
                 </div>
 
             </section>
 
 
-            <!-- Daily Records -->
+            <!-- =================================================
+                 Daily Records
+                 ================================================= -->
 
-            <section class="dashboard-section">
+            <section class="section-card">
 
-                <div class="section-heading">
+
+                <div class="section-header">
 
                     <div>
 
-                        <span class="section-label">
-                            DAILY RECORDS
-                        </span>
-
                         <h2>
-                            Daily Activity
+                            Daily Records
                         </h2>
+
+                        <p>
+                            Daily feed, water, health and medicine records.
+                        </p>
 
                     </div>
 
@@ -343,122 +347,318 @@
 
                 {% if daily_records %}
 
-                <div class="activity-card">
 
-                    {% for record in daily_records %}
+                <div class="table-container">
 
-                    <div class="activity-item">
+                    <table>
 
-                        <span class="activity-icon">
-                            📋
-                        </span>
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Feed (kg)
+                                </th>
+
+                                <th>
+                                    Water (L)
+                                </th>
+
+                                <th>
+                                    Dead
+                                </th>
+
+                                <th>
+                                    Sick
+                                </th>
+
+                                <th>
+                                    Medicine
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
 
 
-                        <div class="activity-content">
+                        <tbody>
 
-                            <h3>
-                                {{ record.record_date }}
-                            </h3>
+                            {% for record in daily_records %}
 
-                            <p>
-                                Feed: {{ record.feed_amount_kg }} kg
-                                &nbsp; | &nbsp;
-                                Water: {{ record.water_liters }} L
-                                &nbsp; | &nbsp;
-                                Dead: {{ record.dead_count }}
-                                &nbsp; | &nbsp;
-                                Sick: {{ record.sick_count }}
-                            </p>
+                            <tr>
+
+                                <td>
+                                    {{ record.record_date }}
+                                </td>
+
+                                <td>
+                                    {{ record.feed_amount_kg }}
+                                </td>
+
+                                <td>
+                                    {{ record.water_liters }}
+                                </td>
+
+                                <td>
+                                    {{ record.dead_count }}
+                                </td>
+
+                                <td>
+                                    {{ record.sick_count }}
+                                </td>
+
+                                <td>
+
+                                    {% if record.medicine_used %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
+
+                                </td>
 
 
-                            <p>
+                                <td class="table-actions">
 
-                                {% if record.medicine_used %}
-                                💊 Medicine used
-                                {% else %}
-                                No medicine
-                                {% endif %}
-
-                            </p>
+                                    <a href="{% url 'daily_record_detail' record.id %}" class="secondary-button">
+                                        View
+                                    </a>
 
 
-                            <div class="quick-actions">
+                                    <a href="{% url 'daily_record_edit' record.id %}" class="secondary-button">
+                                        Edit
+                                    </a>
 
-                                <a href="{% url 'daily_record_detail' record.id %}" class="secondary-button">
-                                    View
-                                </a>
 
-                                <a href="{% url 'daily_record_edit' record.id %}" class="primary-button">
-                                    Edit
-                                </a>
+                                    <a href="{% url 'daily_record_delete' record.id %}" class="secondary-button">
+                                        Delete
+                                    </a>
 
-                                <a href="{% url 'daily_record_delete' record.id %}" class="secondary-button">
-                                    Delete
-                                </a>
+                                </td>
 
-                            </div>
+                            </tr>
 
-                        </div>
+                            {% endfor %}
 
-                    </div>
+                        </tbody>
 
-                    {% endfor %}
+                    </table>
 
                 </div>
+
 
                 {% else %}
 
-                <div class="activity-card">
 
-                    <div class="activity-item">
+                <div class="empty-state">
 
-                        <span class="activity-icon">
-                            📋
-                        </span>
+                    <h3>
+                        No Daily Records Yet
+                    </h3>
 
-                        <div>
+                    <p>
+                        Start recording daily activity for this batch.
+                    </p>
 
-                            <h3>
-                                No Daily Records Yet
-                            </h3>
-
-                            <p>
-                                Start tracking this batch's daily activity by adding the first record.
-                            </p>
-
-                            <br>
-
-                            <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
-                                + Add First Daily Record
-                            </a>
-
-                        </div>
-
-                    </div>
+                    <a href="{% url 'daily_record_create' batch.id %}" class="primary-button">
+                        + Add First Record
+                    </a>
 
                 </div>
 
+
                 {% endif %}
+
 
             </section>
 
 
-            <!-- Notes -->
+            <!-- =================================================
+                 Egg Production
+                 ================================================= -->
 
-            {% if batch.notes %}
+            <section class="section-card">
 
-            <section class="dashboard-section">
 
-                <div class="section-heading">
+                <div class="section-header">
 
                     <div>
 
-                        <span class="section-label">
-                            NOTES
-                        </span>
+                        <h2>
+                            Egg Production
+                        </h2>
+
+                        <p>
+                            Daily egg production and damaged egg records for this batch.
+                        </p>
+
+                    </div>
+
+
+                    <a href="{% url 'egg_production_create' batch.id %}" class="primary-button">
+                        + Add Egg Production
+                    </a>
+
+                </div>
+
+
+                {% if egg_productions %}
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Total Eggs
+                                </th>
+
+                                <th>
+                                    Damaged Eggs
+                                </th>
+
+                                <th>
+                                    Good Eggs
+                                </th>
+
+                                <th>
+                                    Notes
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for production in egg_productions %}
+
+                            <tr>
+
+                                <td>
+                                    {{ production.production_date }}
+                                </td>
+
+
+                                <td>
+                                    {{ production.egg_count }}
+                                </td>
+
+
+                                <td>
+                                    {{ production.damaged_egg_count }}
+                                </td>
+
+
+                                <td>
+                                    {{ production.good_egg_count }}
+                                </td>
+
+
+                                <td>
+
+                                    {% if production.notes %}
+
+                                    {{ production.notes }}
+
+                                    {% else %}
+
+                                    —
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td class="table-actions">
+
+
+                                    <a href="{% url 'egg_production_edit' production.id %}" class="secondary-button">
+                                        Edit
+                                    </a>
+
+
+                                    <a href="{% url 'egg_production_delete' production.id %}" class="secondary-button">
+                                        Delete
+                                    </a>
+
+
+                                </td>
+
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                {% else %}
+
+
+                <div class="empty-state">
+
+                    <h3>
+                        No Egg Production Records Yet
+                    </h3>
+
+                    <p>
+                        Start recording egg production for this batch.
+                    </p>
+
+                    <a href="{% url 'egg_production_create' batch.id %}" class="primary-button">
+                        + Add First Egg Record
+                    </a>
+
+                </div>
+
+
+                {% endif %}
+
+
+            </section>
+
+
+            <!-- =================================================
+                 Batch Notes
+                 ================================================= -->
+
+            {% if batch.notes %}
+
+            <section class="section-card">
+
+
+                <div class="section-header">
+
+                    <div>
 
                         <h2>
-                            Additional Notes
+                            Notes
                         </h2>
 
                     </div>
@@ -466,42 +666,22 @@
                 </div>
 
 
-                <div class="activity-card">
+                <div class="notes-content">
 
-                    <div class="activity-item">
-
-                        <span class="activity-icon">
-                            📝
-                        </span>
-
-                        <div>
-
-                            <p>
-                                {{ batch.notes }}
-                            </p>
-
-                        </div>
-
-                    </div>
+                    {{ batch.notes|linebreaks }}
 
                 </div>
+
 
             </section>
 
             {% endif %}
 
+
         </div>
 
     </main>
 
-
-    <footer class="dashboard-footer">
-
-        <p>
-            © 2026 SmartPoultry. Modern Poultry Farm Management.
-        </p>
-
-    </footer>
 
 </body>
 

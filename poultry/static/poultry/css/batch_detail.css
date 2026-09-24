@@ -1,0 +1,351 @@
+/* =========================================================
+   Batch Detail Page
+   Dashboard-style layout
+   ========================================================= */
+
+
+/* =========================================================
+   Batch Hero Layout
+   ========================================================= */
+
+.dashboard-hero {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.9fr) minmax(0, 2.4fr);
+    align-items: start;
+    gap: 40px;
+}
+
+
+/* =========================================================
+   Batch Action Area
+   ========================================================= */
+
+.quick-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    padding-top: 50px;
+}
+
+
+/* Remove unwanted form spacing */
+
+.quick-actions form {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Keep all buttons same vertical alignment */
+
+.quick-actions a,
+.quick-actions button {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   Batch Information Cards
+   ========================================================= */
+
+.section-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 28px;
+    margin-top: 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Section heading */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+
+.section-header h2 {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+    color: #111827;
+}
+
+
+.section-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   Information Grid
+   ========================================================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+
+.info-item {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 18px;
+    min-height: 78px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+
+.info-label {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+
+.info-item strong {
+    font-size: 16px;
+    color: #111827;
+}
+
+
+/* =========================================================
+   Daily Records Table
+   ========================================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.table-container th,
+.table-container td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    white-space: nowrap;
+}
+
+
+.table-container th {
+    background: #f8fafc;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.table-container td {
+    color: #4b5563;
+    font-size: 14px;
+}
+
+
+.table-container tbody tr:hover {
+    background: #f9fafb;
+}
+
+
+/* =========================================================
+   Table Actions
+   ========================================================= */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.table-actions .secondary-button {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   Empty State
+   ========================================================= */
+
+.empty-state {
+    text-align: center;
+    padding: 45px 20px;
+    border: 1px dashed #d1d5db;
+    border-radius: 12px;
+    background: #f9fafb;
+}
+
+
+.empty-state h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    color: #111827;
+}
+
+
+.empty-state p {
+    margin-bottom: 20px;
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   Notes
+   ========================================================= */
+
+.notes-content {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px;
+    color: #374151;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   Desktop Action Button Size
+   ========================================================= */
+
+.quick-actions .primary-button,
+.quick-actions .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 0 10px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Responsive - Tablet
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+
+    .quick-actions {
+        padding-top: 0;
+        justify-content: flex-start;
+    }
+
+
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   Responsive - Mobile
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-hero {
+        grid-template-columns: 1fr;
+    }
+
+
+    .quick-actions {
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+
+    .quick-actions a,
+    .quick-actions form,
+    .quick-actions button {
+        width: 100%;
+    }
+
+
+    .quick-actions .primary-button,
+    .quick-actions .secondary-button {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .section-card {
+        padding: 20px;
+    }
+
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+}
+
+/* =========================================
+   Batch Detail - All Action Buttons White
+   ========================================= */
+
+.quick-actions .primary-button,
+.quick-actions .secondary-button {
+    background: #ffffff;
+    color: #166534;
+    border: 1px solid #d1d5db;
+}
+
+
+/* Hover */
+
+.quick-actions .primary-button:hover,
+.quick-actions .secondary-button:hover {
+    background: #f3f4f6;
+    color: #166534;
+    border-color: #9ca3af;
+}

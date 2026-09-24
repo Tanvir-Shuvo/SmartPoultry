@@ -1,9 +1,8 @@
-
 from datetime import date
 
 from django import forms
 
-from .models import Farm, Batch, DailyRecord
+from .models import Farm, Batch, DailyRecord, EggProduction
 
 
 class FarmForm(forms.ModelForm):
@@ -63,3 +62,20 @@ class DailyRecordForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["record_date"].initial = date.today()
+
+
+class EggProductionForm(forms.ModelForm):
+
+    class Meta:
+        model = EggProduction
+        fields = [
+            "production_date",
+            "egg_count",
+            "damaged_egg_count",
+            "notes",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["production_date"].initial = date.today()
