@@ -2,7 +2,13 @@ from datetime import date
 
 from django import forms
 
-from .models import Farm, Batch, DailyRecord, EggProduction
+from .models import (
+    Farm,
+    Batch,
+    DailyRecord,
+    EggProduction,
+    Expense,
+)
 
 
 class FarmForm(forms.ModelForm):
@@ -79,3 +85,75 @@ class EggProductionForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["production_date"].initial = date.today()
+
+
+class ExpenseForm(forms.ModelForm):
+
+    class Meta:
+        model = Expense
+        fields = [
+            "farm",
+            "batch",
+            "expense_type",
+            "category",
+            "amount",
+            "expense_date",
+            "description",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+
+        super().__init__(*args, **kwargs)
+
+        self.fields["expense_date"].initial = date.today()
+
+        if user is not None:
+            self.fields["farm"].queryset = Farm.objects.filter(
+                owner=user
+            )
+
+            self.fields["batch"].queryset = Batch.objects.filter(
+                farm__owner=user
+            )
+
+        else:
+            self.fields["farm"].queryset = Farm.objects.none()
+            self.fields["batch"].queryset = Batch.objects.none()
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        farm = cleaned_data.get("farm")
+        batch = cleaned_data.get("batch")
+        expense_type = cleaned_data.get("expense_type")
+        amount = cleaned_data.get("amount")
+
+        if amount is not None and amount <= 0:
+            self.add_error(
+                "amount",
+                "Amount must be greater than zero.",
+            )
+
+        if expense_type == "FARM":
+            if batch is not None:
+                self.add_error(
+                    "batch",
+                    "Farm expense should not be linked to a batch.",
+                )
+
+        elif expense_type == "BATCH":
+            if batch is None:
+                self.add_error(
+                    "batch",
+                    "Please select a batch for a batch expense.",
+                )
+
+        if farm is not None and batch is not None:
+            if batch.farm_id != farm.id:
+                self.add_error(
+                    "batch",
+                    "Selected batch does not belong to the selected farm.",
+                )
+
+        return cleaned_data

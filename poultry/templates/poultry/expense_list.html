@@ -1,0 +1,371 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expenses | SmartPoultry</title>
+
+    <link rel="stylesheet" href="{% static 'poultry/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'poultry/css/expense.css' %}">
+
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="brand">
+
+                <span class="brand-icon">🐔</span>
+
+                <span>SmartPoultry</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="{% url 'dashboard' %}">
+                    Dashboard
+                </a>
+
+                <a href="{% url 'farm_list' %}">
+                    Farms
+                </a>
+
+                <a href="{% url 'batch_list' %}">
+                    Batches
+                </a>
+
+                <a href="{% url 'daily_record_list' %}">
+                    Records
+                </a>
+
+                <a href="{% url 'egg_production_list' %}">
+                    Egg Production
+                </a>
+
+                <a href="{% url 'expense_list' %}" class="active">
+                    Expenses
+                </a>
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/logout/" class="logout-link">
+                    Logout
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Expense Main Content -->
+
+    <main class="expense-page">
+
+        <div class="expense-container">
+
+
+            <!-- Page Header -->
+
+            <div class="expense-page-header">
+
+                <div>
+
+                    <p class="expense-eyebrow">
+                        Financial Management
+                    </p>
+
+                    <h1>
+                        Expenses
+                    </h1>
+
+                    <p class="expense-page-description">
+                        Track and manage all farm and batch-related
+                        expenses in one place.
+                    </p>
+
+                </div>
+
+
+                <div class="expense-header-action">
+
+                    <a href="{% url 'expense_create' %}" class="expense-primary-button">
+
+                        + Add Expense
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Expense Summary -->
+
+            <section class="expense-summary-grid">
+
+                <div class="expense-summary-card">
+
+                    <div class="expense-summary-icon">
+                        ৳
+                    </div>
+
+                    <div>
+
+                        <p class="expense-summary-label">
+                            Total Expenses
+                        </p>
+
+                        <h2>
+                            ৳ {{ total_expenses|floatformat:2 }}
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Expense Records -->
+
+            <section class="expense-table-section">
+
+                <div class="expense-section-header">
+
+                    <div>
+
+                        <h2>
+                            Expense Records
+                        </h2>
+
+                        <p>
+                            Recent expense transactions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {% if expenses %}
+
+                <div class="expense-table-wrapper">
+
+                    <table class="expense-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+
+                                <th>Farm</th>
+
+                                <th>Type</th>
+
+                                <th>Category</th>
+
+                                <th>Batch</th>
+
+                                <th>Amount</th>
+
+                                <th>Description</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for expense in expenses %}
+
+                            <tr>
+
+                                <td data-label="Date">
+                                    {{ expense.expense_date|date:"d M Y" }}
+                                </td>
+
+
+                                <td data-label="Farm">
+
+                                    <strong>
+                                        {{ expense.farm.name }}
+                                    </strong>
+
+                                </td>
+
+
+                                <td data-label="Type">
+
+                                    <span class="expense-type-badge
+                                                {% if expense.expense_type == 'FARM' %}
+                                                    farm-type
+                                                {% else %}
+                                                    batch-type
+                                                {% endif %}">
+
+                                        {{ expense.get_expense_type_display }}
+
+                                    </span>
+
+                                </td>
+
+
+                                <td data-label="Category">
+
+                                    {{ expense.category }}
+
+                                </td>
+
+
+                                <td data-label="Batch">
+
+                                    {% if expense.batch %}
+
+                                    {{ expense.batch.code }}
+
+                                    {% else %}
+
+                                    <span class="expense-muted">
+                                        Farm Level
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td data-label="Amount" class="expense-amount">
+
+                                    ৳ {{ expense.amount|floatformat:2 }}
+
+                                </td>
+
+
+                                <td data-label="Description">
+
+                                    {% if expense.description %}
+
+                                    {{ expense.description|truncatechars:40 }}
+
+                                    {% else %}
+
+                                    <span class="expense-muted">
+                                        —
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td data-label="Actions">
+
+                                    <div class="expense-actions">
+
+                                        <a href="{% url 'expense_edit' expense.id %}" class="expense-edit-button">
+
+                                            Edit
+
+                                        </a>
+
+
+                                        <a href="{% url 'expense_delete' expense.id %}" class="expense-delete-button">
+
+                                            Delete
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                {% else %}
+
+
+                <!-- Empty State -->
+
+                <div class="expense-empty-state">
+
+                    <div class="expense-empty-icon">
+                        ৳
+                    </div>
+
+                    <h3>
+                        No expenses yet
+                    </h3>
+
+                    <p>
+                        Start recording your farm expenses
+                        to keep track of your financial activity.
+                    </p>
+
+                    <a href="{% url 'expense_create' %}" class="expense-primary-button">
+
+                        + Add First Expense
+
+                    </a>
+
+                </div>
+
+
+                {% endif %}
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+
+            © 2026 SmartPoultry.
+            Modern Poultry Farm Management.
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

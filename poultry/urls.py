@@ -1,28 +1,6 @@
 from django.urls import path
 
-from .views import (
-    batch_create_view,
-    batch_delete_view,
-    batch_detail_view,
-    batch_edit_view,
-    batch_list_view,
-    batch_toggle_status_view,
-    dashboard_view,
-    daily_record_create_view,
-    daily_record_delete_view,
-    daily_record_detail_view,
-    daily_record_edit_view,
-    daily_record_list_view,
-    egg_production_create_view,
-    egg_production_delete_view,
-    egg_production_edit_view,
-    egg_production_list_view,
-    farm_create_view,
-    farm_delete_view,
-    farm_detail_view,
-    farm_edit_view,
-    farm_list_view,
-)
+from . import views
 
 
 urlpatterns = [
@@ -33,147 +11,176 @@ urlpatterns = [
 
     path(
         "dashboard/",
-        dashboard_view,
+        views.dashboard_view,
         name="dashboard",
     ),
 
 
     # =====================================================
-    # Farm
+    # Farm Management
     # =====================================================
 
     path(
-        "farms/add/",
-        farm_create_view,
-        name="farm_create",
-    ),
-
-    path(
         "farms/",
-        farm_list_view,
+        views.farm_list_view,
         name="farm_list",
     ),
 
     path(
+        "farms/add/",
+        views.farm_create_view,
+        name="farm_create",
+    ),
+
+    path(
         "farms/<int:farm_id>/",
-        farm_detail_view,
+        views.farm_detail_view,
         name="farm_detail",
     ),
 
     path(
         "farms/<int:farm_id>/edit/",
-        farm_edit_view,
+        views.farm_edit_view,
         name="farm_edit",
     ),
 
     path(
         "farms/<int:farm_id>/delete/",
-        farm_delete_view,
+        views.farm_delete_view,
         name="farm_delete",
     ),
 
 
     # =====================================================
-    # Batch
+    # Batch Management
     # =====================================================
 
     path(
-        "batches/add/",
-        batch_create_view,
-        name="batch_create",
-    ),
-
-    path(
         "batches/",
-        batch_list_view,
+        views.batch_list_view,
         name="batch_list",
     ),
 
     path(
+        "batches/add/",
+        views.batch_create_view,
+        name="batch_create",
+    ),
+
+    path(
         "batches/<int:batch_id>/",
-        batch_detail_view,
+        views.batch_detail_view,
         name="batch_detail",
     ),
 
     path(
         "batches/<int:batch_id>/edit/",
-        batch_edit_view,
+        views.batch_edit_view,
         name="batch_edit",
     ),
 
     path(
         "batches/<int:batch_id>/delete/",
-        batch_delete_view,
+        views.batch_delete_view,
         name="batch_delete",
     ),
 
     path(
         "batches/<int:batch_id>/status/",
-        batch_toggle_status_view,
+        views.batch_toggle_status_view,
         name="batch_toggle_status",
     ),
 
 
     # =====================================================
-    # Daily Records
+    # Daily Record Management
     # =====================================================
 
     path(
         "records/",
-        daily_record_list_view,
+        views.daily_record_list_view,
         name="daily_record_list",
     ),
 
     path(
+        "batches/<int:batch_id>/daily-records/add/",
+        views.daily_record_create_view,
+        name="daily_record_create",
+    ),
+
+    path(
         "records/<int:record_id>/",
-        daily_record_detail_view,
+        views.daily_record_detail_view,
         name="daily_record_detail",
     ),
 
     path(
         "records/<int:record_id>/edit/",
-        daily_record_edit_view,
+        views.daily_record_edit_view,
         name="daily_record_edit",
     ),
 
     path(
         "records/<int:record_id>/delete/",
-        daily_record_delete_view,
+        views.daily_record_delete_view,
         name="daily_record_delete",
-    ),
-
-    path(
-        "batches/<int:batch_id>/daily-records/add/",
-        daily_record_create_view,
-        name="daily_record_create",
     ),
 
 
     # =====================================================
-    # Egg Production
+    # Egg Production Management
     # =====================================================
 
     path(
         "egg-productions/",
-        egg_production_list_view,
+        views.egg_production_list_view,
         name="egg_production_list",
     ),
 
     path(
         "batches/<int:batch_id>/egg-production/add/",
-        egg_production_create_view,
+        views.egg_production_create_view,
         name="egg_production_create",
     ),
 
     path(
-        "egg-productions/<int:production_id>/edit/",
-        egg_production_edit_view,
+        "egg-productions/<int:egg_id>/edit/",
+        views.egg_production_edit_view,
         name="egg_production_edit",
     ),
 
     path(
-        "egg-productions/<int:production_id>/delete/",
-        egg_production_delete_view,
+        "egg-productions/<int:egg_id>/delete/",
+        views.egg_production_delete_view,
         name="egg_production_delete",
+    ),
+
+
+    # =====================================================
+    # Expense Management
+    # =====================================================
+
+    path(
+        "expenses/",
+        views.expense_list_view,
+        name="expense_list",
+    ),
+
+    path(
+        "expenses/add/",
+        views.expense_create_view,
+        name="expense_create",
+    ),
+
+    path(
+        "expenses/<int:expense_id>/edit/",
+        views.expense_edit_view,
+        name="expense_edit",
+    ),
+
+    path(
+        "expenses/<int:expense_id>/delete/",
+        views.expense_delete_view,
+        name="expense_delete",
     ),
 ]
